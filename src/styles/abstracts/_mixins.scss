@@ -1,0 +1,12 @@
+@use '../abstracts/variables' as v;
+@mixin respond-to($breakpoint) {
+    @if $breakpoint == v.$bp-tablet {
+        @media (min-width: 1024px) {
+            @content;
+        }
+    } @else if $breakpoint == v.$bp-dekstop {
+        @media (min-width: 1728px) {
+            @content;
+        }
+    }
+}
