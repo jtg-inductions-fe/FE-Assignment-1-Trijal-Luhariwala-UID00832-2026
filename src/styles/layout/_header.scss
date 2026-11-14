@@ -1,0 +1,218 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as m;
+@use '../abstracts/functions' as *;
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $color-white;
+    position: relative;
+    height: toRem(80px);
+    @include m.font('poppins-reg');
+
+    &__brand {
+        display: flex;
+        align-items: center;
+        gap: toRem(12px);
+    }
+
+    &__logoname {
+        @include m.font('josefin-bold');
+        font-size: $fs-xl;
+        display: none;
+
+        span {
+            @include m.font('josefin-reg');
+        }
+    }
+
+    .dropdown {
+        position: relative;
+        cursor: pointer;
+
+        &-head {
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            // padding-top: toRem(20px);
+
+            i {
+                font-size: toRem(24px);
+                background: $color-grad;
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                display: inline-block;
+                width: toRem(80px);
+                height: toRem(80px);
+                align-self: center;
+                padding: toRem(28px) toRem(22px);
+
+                &::before {
+                    color: $color-grad;
+                }
+            }
+        }
+
+        &-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: $color-white;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+            z-index: 100;
+            width: toRem(300px);
+
+            .dropdown-header {
+                color: $color-accent;
+                font-weight: $weight-bold;
+                padding: 1rem 1.5rem 0.5rem;
+            }
+
+            li a {
+                display: block;
+                padding: 0.75rem 1.5rem;
+                text-decoration: none;
+                background: $color-grad;
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-size: 0.9rem;
+
+                &:hover {
+                    background: $color-grad;
+                    -webkit-text-fill-color: $color-white;
+                }
+            }
+        }
+
+        &:hover .dropdown-content {
+            display: block;
+        }
+
+        &:hover .dropdown-head {
+            display: flex;
+            align-content: center;
+            background: $color-grad;
+            color: $color-white;
+
+            i {
+                background: $color-white;
+                background-color: $color-grad;
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                display: inline-block;
+
+                &::before {
+                    color: $color-white;
+                }
+            }
+        }
+    }
+
+    &__big {
+        display: none;
+    }
+
+    &__icons {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: toRem(168px);
+        padding-right: toRem(8px);
+        margin-right: toRem(22px);
+        a {
+            display: flex;
+            align-items: center;
+            column-gap: toRem(8px);
+            text-decoration: none;
+            color: $color-text;
+
+            i {
+                font-size: toRem(32px);
+                line-height: 1;
+            }
+
+            span {
+                display: none;
+            }
+        }
+    }
+
+    @include m.respond-to($bp-tablet) {
+        padding: 1rem 3rem;
+
+        .dropdown-head {
+            width: toRem(120px);
+            height: toRem(45px);
+            padding-top: toRem(10px);
+            padding-left: 0;
+        }
+
+        .dropdown-content {
+            width: toRem(180px);
+        }
+
+        &__small {
+            display: none;
+        }
+
+        &__logoname {
+            display: block;
+        }
+
+        &__big {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        &__favorite {
+            display: none !important;
+        }
+
+        &__icons {
+            width: toRem(132px);
+            margin-right: 0;
+        }
+    }
+
+    @include m.respond-to($bp-desktop) {
+        padding: 1rem 5rem;
+
+        .dropdown-head {
+            width: toRem(120px);
+            height: toRem(45px);
+            padding-top: toRem(10px);
+            padding-left: 0;
+        }
+
+        .dropdown-content {
+            width: toRem(180px);
+        }
+
+        &__big {
+            margin-right: auto;
+            margin-left: 3rem;
+        }
+
+        &__icons {
+            width: toRem(372px);
+            margin-right: 0;
+            a span {
+                display: inline-block;
+                font-size: toRem(18px);
+            }
+        }
+
+        &__favorite {
+            display: none !important;
+        }
+    }
+}
