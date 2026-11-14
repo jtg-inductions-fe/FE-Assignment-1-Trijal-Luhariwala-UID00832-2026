@@ -15,16 +15,82 @@
         <link rel="stylesheet" href="src/styles/main.scss" />
     </head>
     <body>
-        <header class="header">
-            <nav class="nav" aria-label="Main navigation"></nav>
+        <header class="navbar">
+            <div class="navbar__brand">
+                <div class="navbar__small">
+                    <div class="dropdown">
+                        <div class="dropdown-head">
+                            <i class="icon icon-menu"></i>
+                        </div>
+                        <ul class="dropdown-content">
+                            <li class="dropdown-header">Categories</li>
+                            <li><a href="#">PROGRAMMING</a></li>
+                            <li><a href="#">FRONT-END</a></li>
+                            <li><a href="#">INFRASTRUCTURE</a></li>
+                            <li><a href="#">BUSINESS</a></li>
+                            <li><a href="#">DESIGN & UX</a></li>
+
+                            <li class="dropdown-header">Favorites</li>
+                            <li><a href="#">OPTION A</a></li>
+                            <li><a href="#">OPTION B</a></li>
+                            <li><a href="#">OPTION C</a></li>
+
+                            <li class="dropdown-header">My Bookshelf</li>
+                            <li><a href="#">OPTION A</a></li>
+                            <li><a href="#">OPTION B</a></li>
+                            <li><a href="#">OPTION C</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="navbar__logo">
+                    <img src="src/assets/images/logos/Logo.png" alt="Logo" />
+                </div>
+                <div class="navbar__logoname">Alura<span>Books</span></div>
+            </div>
+
+            <nav class="navbar__big">
+                <div class="dropdown">
+                    <div class="dropdown-head">CATEGORIES</div>
+                    <ul class="dropdown-content">
+                        <li><a href="#">PROGRAMMING</a></li>
+                        <li><a href="#">FRONT-END</a></li>
+                        <li><a href="#">INFRASTRUCTURE</a></li>
+                        <li><a href="#">BUSINESS</a></li>
+                        <li><a href="#">DESIGN & UX</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <div class="dropdown-head">FAVORITES</div>
+                    <ul class="dropdown-content">
+                        <li><a href="#">OPTION A</a></li>
+                        <li><a href="#">OPTION B</a></li>
+                        <li><a href="#">OPTION C</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <div class="dropdown-head">MY BOOKSHELF</div>
+                    <ul class="dropdown-content">
+                        <li><a href="#">OPTION A</a></li>
+                        <li><a href="#">OPTION B</a></li>
+                        <li><a href="#">OPTION C</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="navbar__icons">
+                <a href="#" class="navbar__favorite">
+                    <i class="icon icon-favourite"></i>
+                </a>
+                <a href="#" class="navbar__bag">
+                    <i class="icon icon-bag"></i>
+                    <span>My Bag</span>
+                </a>
+                <a href="#" class="navbar__profile">
+                    <i class="icon icon-profile"></i>
+                    <span>My Profile</span>
+                </a>
+            </div>
         </header>
-
-        <main class="main">
-            Hello world<span class="icon icon-profile"></span>
-        </main>
-
-        <footer class="footer"></footer>
-
         <script type="module" src="./src/script/index.js"></script>
     </body>
 </html>
