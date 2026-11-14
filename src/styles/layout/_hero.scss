@@ -1,0 +1,100 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/functions' as *;
+@use '../abstracts/mixins' as m;
+
+.hero {
+    background: $color-grad;
+    width: 100%;
+    height: toRem(215px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: toRem(10px);
+
+    &__question {
+        @include m.font('poppins-bold');
+        color: $color-white;
+        align-self: center;
+        font-size: toRem(18px);
+    }
+
+    &__para {
+        @include m.font('poppins-med');
+        color: $color-white;
+        align-self: center;
+        font-size: toRem(16px);
+        max-width: toRem(316px);
+        text-align: center;
+    }
+    &__search-box {
+        @include m.font('poppins-reg');
+        display: flex;
+        align-self: center;
+        align-items: center;
+        justify-content: flex-start;
+        width: toRem(380px);
+        height: toRem(45px);
+        padding: toRem(10px) toRem(24px);
+        border: 1px solid $color-white;
+        border-radius: 50px;
+        background-color: transparent;
+        transition: border-color 0.2s ease;
+
+        i {
+            color: $color-white;
+            font-size: toRem(24px);
+            margin-right: toRem(12px);
+            margin-left: calc(50% - #{toRem(122px)});
+            cursor: pointer;
+            transition:
+                margin-left 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+                opacity 0.2s ease;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+
+        input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: $color-white;
+            font-size: toRem(14px);
+            width: 100%;
+
+            &::placeholder {
+                color: rgba(255, 255, 255, 0.8);
+            }
+        }
+
+        &.has-text {
+            border-color: $color-white;
+
+            i {
+                margin-left: 0;
+            }
+        }
+    }
+    @include m.respond-to($bp-tablet) {
+        height: toRem(330px);
+        &__question {
+            font-size: toRem(36px);
+        }
+        &__para {
+            max-width: toRem(500px);
+        }
+        &__search-box {
+            width: toRem(480px);
+            height: toRem(60px);
+            input {
+                font-size: toRem(16px);
+            }
+        }
+    }
+    @include m.respond-to($bp-desktop) {
+        &__search-box {
+            width: toRem(590px);
+        }
+    }
+}
