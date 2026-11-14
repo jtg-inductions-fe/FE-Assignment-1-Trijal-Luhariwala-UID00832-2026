@@ -1,0 +1,55 @@
+$color-grad-dark: #002f52;
+$color-grad-light: #326589;
+$color-accent: #eb9b00;
+$color-bg-section: #ebecee;
+$color-white: #ffffff;
+$color-text: #000000;
+$color-text-muted: #858585;
+
+$color-grad: linear-gradient(to right, $color-grad-dark, $color-grad-light);
+
+$font-primary: 'Poppins', sans-serif;
+$font-secondary: 'Josefin Sans', sans-serif;
+
+$bp-tablet: 1024px;
+$bp-desktop: 1728px;
+
+$weight-light: 300;
+$weight-regular: 400;
+$weight-medium: 500;
+$weight-bold: 700;
+
+$fonts: (
+    'poppins-light': (
+        $font-primary,
+        $weight-light,
+    ),
+    'poppins-reg': (
+        $font-primary,
+        $weight-regular,
+    ),
+    'poppins-med': (
+        $font-primary,
+        $weight-medium,
+    ),
+    'poppins-bold': (
+        $font-primary,
+        $weight-bold,
+    ),
+    'josefin-reg': (
+        $font-secondary,
+        $weight-regular,
+    ),
+    'josefin-bold': (
+        $font-secondary,
+        $weight-bold,
+    ),
+);
+
+$fs-sm: 14px;
+$fs-base: 16px;
+$fs-md: 18px;
+$fs-lg: 24px;
+$fs-xl: 30px;
+$fs-2xl: 32px;
+$fs-3xl: 36px;

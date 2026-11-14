@@ -1,0 +1,20 @@
+@use 'sass:map';
+@use 'sass:list';
+@use '../abstracts/variables' as v;
+@mixin respond-to($breakpoint) {
+    @if $breakpoint == v.$bp-tablet {
+        @media (min-width: 1024px) {
+            @content;
+        }
+    } @else if $breakpoint == v.$bp-desktop {
+        @media (min-width: 1728px) {
+            @content;
+        }
+    }
+}
+
+@mixin font($name) {
+    $config: map.get(v.$fonts, $name);
+    font-family: list.nth($config, 1);
+    font-weight: list.nth($config, 2);
+}
