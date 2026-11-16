@@ -1,20 +1,23 @@
 @use 'sass:map';
 @use 'sass:list';
-@use '../abstracts/variables' as v;
+@use './variables' as v;
 @mixin respond-to($breakpoint) {
-    @if $breakpoint == v.$bp-tablet {
-        @media (min-width: 1024px) {
+    @if map.has-key(v.$breakpoints, $breakpoint) {
+        $value: map.get(v.$breakpoints, $breakpoint);
+        @media (min-width: $value) {
             @content;
         }
-    } @else if $breakpoint == v.$bp-desktop {
-        @media (min-width: 1728px) {
-            @content;
-        }
+    } @else {
+        @error "Breakpoint '#{$breakpoint}' not found in $breakpoints.";
     }
 }
 
 @mixin font($name) {
-    $config: map.get(v.$fonts, $name);
-    font-family: list.nth($config, 1);
-    font-weight: list.nth($config, 2);
+    @if map.has-key(v.$fonts, $name) {
+        $config: map.get(v.$fonts, $name);
+        font-family: list.nth($config, 1);
+        font-weight: list.nth($config, 2);
+    } @else {
+        @error "Font '#{$name}' not found in $fonts.";
+    }
 }

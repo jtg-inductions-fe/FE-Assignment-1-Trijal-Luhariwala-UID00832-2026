@@ -1,0 +1,55 @@
+@use 'sass:map';
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+@use '../abstracts/functions' as f;
+
+body {
+    @include m.font('body-reg');
+    font-size: map.get(v.$font-sizes, 'base');
+    color: map.get(v.$colors, 'text-inverse');
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    @include m.font('body-bold');
+    color: map.get(v.$colors, 'text-primary');
+}
+
+h1 {
+    color: map.get(v.$colors, 'text-inverse');
+    align-self: center;
+    font-size: map.get(v.$font-sizes, 'md');
+
+    @include m.respond-to('tablet') {
+        font-size: map.get(v.$font-sizes, '4xl');
+    }
+}
+
+h2 {
+    color: map.get(v.$colors, 'accent');
+    font-size: map.get(v.$font-sizes, 'md');
+    @include m.respond-to('tablet') {
+        font-size: map.get(v.$font-sizes, 'xl');
+    }
+    @include m.respond-to('desktop') {
+        font-size: map.get(v.$font-sizes, '3xl');
+    }
+}
+
+h3 {
+    color: map.get(v.$colors, 'accent');
+    font-size: map.get(v.$font-sizes, 'base');
+    @include m.respond-to('desktop') {
+        font-size: map.get(v.$font-sizes, '3xl');
+    }
+}
+
+h4 {
+    color: map.get(v.$colors, 'brand-primary');
+    font-size: map.get(v.$font-sizes, 'md');
+}

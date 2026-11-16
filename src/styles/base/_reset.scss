@@ -1,4 +1,6 @@
+@use 'sass:map';
 @use '../abstracts/variables' as v;
+
 *,
 *::before,
 *::after {
@@ -9,9 +11,8 @@
 
 body {
     font-family: v.$font-primary;
-    color: v.$color-text;
-    background-color: v.$color-white;
-    overflow-x: hidden;
+    color: map.get(v.$colors, 'text-primary');
+    background-color: map.get(v.$colors, 'surface-base');
     line-height: 1.5;
 }
 
