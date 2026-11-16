@@ -1,218 +1,274 @@
-@use '../abstracts/variables' as *;
+@use 'sass:map';
+@use '../abstracts/variables' as v;
 @use '../abstracts/mixins' as m;
-@use '../abstracts/functions' as *;
+@use '../abstracts/functions' as f;
+
+@mixin gradient-text {
+    background: map.get(v.$gradients, 'brand-primary');
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@mixin gradient-surface-active {
+    background: map.get(v.$gradients, 'brand-primary');
+    color: map.get(v.$colors, 'text-inverse');
+    -webkit-text-fill-color: map.get(v.$colors, 'text-inverse');
+}
 
 .navbar {
+    @include m.font('body-reg');
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: $color-white;
     position: relative;
-    height: toRem(80px);
-    @include m.font('poppins-reg');
+    min-height: f.to-rem(80px);
+    background-color: map.get(v.$colors, 'surface-base');
+    z-index: map.get(v.$z-layers, 'sticky');
 
     &__brand {
         display: flex;
         align-items: center;
-        gap: toRem(12px);
+        gap: f.to-rem(12px);
+
+        &:hover .navbar__nav,
+        &:focus-within .navbar__nav {
+            display: block;
+        }
     }
 
-    &__logoname {
-        @include m.font('josefin-bold');
-        font-size: $fs-xl;
-        display: none;
+    &__hamburger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: f.to-rem(80px);
+        min-height: f.to-rem(80px);
+        padding: f.to-rem(28px) f.to-rem(22px);
+        cursor: pointer;
 
-        span {
-            @include m.font('josefin-reg');
+        &:hover,
+        &:focus-visible,
+        &[aria-expanded='true'] {
+            @include gradient-surface-active;
+
+            .navbar__hamburger-icon {
+                @include gradient-surface-active;
+
+                &::before {
+                    color: map.get(v.$colors, 'text-inverse');
+                }
+            }
         }
+    }
+
+    &__hamburger-icon {
+        @include gradient-text;
+        display: inline-block;
+        font-size: map.get(v.$font-sizes, 'lg');
+        line-height: 1;
+    }
+
+    &__logo-link {
+        display: flex;
+        align-items: center;
+        gap: f.to-rem(12px);
+    }
+
+    &__logo-text {
+        @include m.font('title-bold');
+        display: none;
+        font-size: map.get(v.$font-sizes, '2xl');
+        color: map.get(v.$colors, 'text-primary');
+    }
+
+    &__logo-highlight {
+        @include m.font('title-reg');
+    }
+
+    &__nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        max-width: f.to-rem(300px);
+        background-color: map.get(v.$colors, 'surface-base');
+        box-shadow: map.get(v.$shadows, 'md');
+        z-index: map.get(v.$z-layers, 'dropdown');
+    }
+
+    &__menu {
+        display: flex;
+        flex-direction: column;
     }
 
     .dropdown {
         position: relative;
-        cursor: pointer;
 
-        &-head {
-            display: flex;
-            align-content: center;
-            justify-content: center;
-            // padding-top: toRem(20px);
-
-            i {
-                font-size: toRem(24px);
-                background: $color-grad;
-                -webkit-background-clip: text;
-                background-clip: text;
-                -webkit-text-fill-color: transparent;
-                display: inline-block;
-                width: toRem(80px);
-                height: toRem(80px);
-                align-self: center;
-                padding: toRem(28px) toRem(22px);
-
-                &::before {
-                    color: $color-grad;
-                }
-            }
-        }
-
-        &-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: $color-white;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
-            z-index: 100;
-            width: toRem(300px);
-
-            .dropdown-header {
-                color: $color-accent;
-                font-weight: $weight-bold;
-                padding: 1rem 1.5rem 0.5rem;
-            }
-
-            li a {
-                display: block;
-                padding: 0.75rem 1.5rem;
-                text-decoration: none;
-                background: $color-grad;
-                -webkit-background-clip: text;
-                background-clip: text;
-                -webkit-text-fill-color: transparent;
-                font-size: 0.9rem;
-
-                &:hover {
-                    background: $color-grad;
-                    -webkit-text-fill-color: $color-white;
-                }
-            }
-        }
-
-        &:hover .dropdown-content {
+        &__head {
+            @include m.font('body-bold');
             display: block;
+            width: 100%;
+            text-align: left;
+            text-transform: uppercase;
+            color: map.get(v.$colors, 'accent');
+            font-size: map.get(v.$font-sizes, 'base');
+            padding: map.get(v.$spacing, 'md') map.get(v.$spacing, 'lg')
+                map.get(v.$spacing, 'sm');
+            cursor: pointer;
         }
 
-        &:hover .dropdown-head {
-            display: flex;
-            align-content: center;
-            background: $color-grad;
-            color: $color-white;
+        &__content {
+            display: block;
+            width: 100%;
+        }
 
-            i {
-                background: $color-white;
-                background-color: $color-grad;
-                -webkit-background-clip: text;
-                background-clip: text;
-                -webkit-text-fill-color: transparent;
-                display: inline-block;
+        &__link {
+            @include gradient-text;
+            display: block;
+            padding: f.to-rem(12px) map.get(v.$spacing, 'lg');
+            font-size: map.get(v.$font-sizes, 'base');
+            text-transform: uppercase;
 
-                &::before {
-                    color: $color-white;
-                }
+            &:hover,
+            &:focus-visible {
+                @include gradient-surface-active;
             }
         }
     }
 
-    &__big {
-        display: none;
-    }
-
-    &__icons {
+    &__actions {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: toRem(168px);
-        padding-right: toRem(8px);
-        margin-right: toRem(22px);
-        a {
-            display: flex;
-            align-items: center;
-            column-gap: toRem(8px);
-            text-decoration: none;
-            color: $color-text;
-
-            i {
-                font-size: toRem(32px);
-                line-height: 1;
-            }
-
-            span {
-                display: none;
-            }
-        }
+        width: 100%;
+        max-width: f.to-rem(170px);
+        padding-right: map.get(v.$spacing, 'sm');
+        margin-right: f.to-rem(22px);
     }
 
-    @include m.respond-to($bp-tablet) {
-        padding: 1rem 3rem;
+    &__action-link {
+        display: flex;
+        align-items: center;
+        column-gap: map.get(v.$spacing, 'sm');
+        color: map.get(v.$colors, 'text-primary');
+    }
 
-        .dropdown-head {
-            width: toRem(120px);
-            height: toRem(45px);
-            padding-top: toRem(10px);
-            padding-left: 0;
-        }
+    &__action-icon {
+        font-size: map.get(v.$font-sizes, '3xl');
+        line-height: 1;
+    }
 
-        .dropdown-content {
-            width: toRem(180px);
-        }
+    &__action-text {
+        display: none;
+    }
 
-        &__small {
+    @include m.respond-to('tablet') {
+        padding: map.get(v.$spacing, 'md') map.get(v.$spacing, '2xl');
+
+        &__hamburger {
             display: none;
         }
 
-        &__logoname {
+        &__logo-text {
             display: block;
         }
 
-        &__big {
-            display: flex;
+        &__nav {
+            display: block;
+            position: static;
+            width: auto;
+            max-width: none;
+            box-shadow: none;
+            background-color: transparent;
+        }
+
+        &__menu {
+            flex-direction: row;
             align-items: center;
-            gap: 1.5rem;
+            gap: map.get(v.$spacing, 'lg');
         }
 
-        &__favorite {
-            display: none !important;
+        .dropdown {
+            &__head {
+                @include m.font('body-reg');
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-width: f.to-rem(120px);
+                min-height: f.to-rem(45px);
+                padding: f.to-rem(10px) map.get(v.$spacing, 'sm');
+                color: map.get(v.$colors, 'text-primary');
+            }
+
+            &__content {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                min-width: f.to-rem(180px);
+                background-color: map.get(v.$colors, 'surface-base');
+                box-shadow: map.get(v.$shadows, 'md');
+                z-index: map.get(v.$z-layers, 'dropdown');
+            }
+
+            &:hover .dropdown__content,
+            &:focus-within .dropdown__content {
+                display: block;
+            }
+
+            &:hover .dropdown__head,
+            &:focus-within .dropdown__head {
+                @include gradient-surface-active;
+            }
         }
 
-        &__icons {
-            width: toRem(132px);
+        &__action-link--favorite {
+            display: none;
+        }
+
+        &__actions {
+            max-width: f.to-rem(130px);
             margin-right: 0;
         }
     }
 
-    @include m.respond-to($bp-desktop) {
-        padding: 1rem 5rem;
+    @include m.respond-to('desktop') {
+        padding: map.get(v.$spacing, 'md') f.to-rem(80px);
 
-        .dropdown-head {
-            width: toRem(120px);
-            height: toRem(45px);
-            padding-top: toRem(10px);
-            padding-left: 0;
-        }
-
-        .dropdown-content {
-            width: toRem(180px);
-        }
-
-        &__big {
+        &__nav {
             margin-right: auto;
-            margin-left: 3rem;
+            margin-left: map.get(v.$spacing, '2xl');
         }
 
-        &__icons {
-            width: toRem(372px);
+        &__actions {
+            max-width: f.to-rem(370px);
             margin-right: 0;
-            a span {
-                display: inline-block;
-                font-size: toRem(18px);
-            }
         }
 
-        &__favorite {
-            display: none !important;
+        &__action-text {
+            display: inline-block;
+            font-size: map.get(v.$font-sizes, 'md');
+        }
+    }
+    &:has(.navbar__brand:hover),
+    &:has(.navbar__brand:focus-within),
+    &:has(.navbar__nav:hover),
+    &:has(.navbar__nav:focus-within) {
+        .navbar__nav {
+            display: block;
+        }
+
+        .navbar__hamburger {
+            @include gradient-surface-active;
+
+            .navbar__hamburger-icon {
+                @include gradient-surface-active;
+
+                &::before {
+                    color: map.get(v.$colors, 'text-inverse');
+                }
+            }
         }
     }
 }
