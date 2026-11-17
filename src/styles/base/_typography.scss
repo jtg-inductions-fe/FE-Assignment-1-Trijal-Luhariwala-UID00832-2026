@@ -22,7 +22,6 @@ h6 {
 
 h1 {
     color: map.get(v.$colors, 'text-inverse');
-    align-self: center;
     font-size: map.get(v.$font-sizes, 'md');
 
     @include m.respond-to('tablet') {
