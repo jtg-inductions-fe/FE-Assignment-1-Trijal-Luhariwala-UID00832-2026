@@ -3,19 +3,6 @@
 @use '../abstracts/mixins' as m;
 @use '../abstracts/functions' as f;
 
-@mixin gradient-text {
-    background: map.get(v.$gradients, 'brand-primary');
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-@mixin gradient-surface-active {
-    background: map.get(v.$gradients, 'brand-primary');
-    color: map.get(v.$colors, 'text-inverse');
-    -webkit-text-fill-color: map.get(v.$colors, 'text-inverse');
-}
-
 .navbar {
     @include m.font('body-reg');
     display: flex;
@@ -30,11 +17,6 @@
         display: flex;
         align-items: center;
         gap: f.to-rem(12px);
-
-        &:hover .navbar__nav,
-        &:focus-within .navbar__nav {
-            display: block;
-        }
     }
 
     &__hamburger {
@@ -48,11 +30,12 @@
 
         &:hover,
         &:focus-visible,
+        &.is-open,
         &[aria-expanded='true'] {
-            @include gradient-surface-active;
+            @include m.gradient-surface-active;
 
             .navbar__hamburger-icon {
-                @include gradient-surface-active;
+                @include m.gradient-surface-active;
 
                 &::before {
                     color: map.get(v.$colors, 'text-inverse');
@@ -62,7 +45,7 @@
     }
 
     &__hamburger-icon {
-        @include gradient-text;
+        @include m.gradient-text;
         display: inline-block;
         font-size: map.get(v.$font-sizes, 'lg');
         line-height: 1;
@@ -95,46 +78,15 @@
         background-color: map.get(v.$colors, 'surface-base');
         box-shadow: map.get(v.$shadows, 'md');
         z-index: map.get(v.$z-layers, 'dropdown');
+
+        &.is-open {
+            display: block;
+        }
     }
 
     &__menu {
         display: flex;
         flex-direction: column;
-    }
-
-    .dropdown {
-        position: relative;
-
-        &__head {
-            @include m.font('body-bold');
-            display: block;
-            width: 100%;
-            text-align: left;
-            text-transform: uppercase;
-            color: map.get(v.$colors, 'accent');
-            font-size: map.get(v.$font-sizes, 'base');
-            padding: map.get(v.$spacing, 'md') map.get(v.$spacing, 'lg')
-                map.get(v.$spacing, 'sm');
-            cursor: pointer;
-        }
-
-        &__content {
-            display: block;
-            width: 100%;
-        }
-
-        &__link {
-            @include gradient-text;
-            display: block;
-            padding: f.to-rem(12px) map.get(v.$spacing, 'lg');
-            font-size: map.get(v.$font-sizes, 'base');
-            text-transform: uppercase;
-
-            &:hover,
-            &:focus-visible {
-                @include gradient-surface-active;
-            }
-        }
     }
 
     &__actions {
@@ -166,7 +118,8 @@
     @include m.respond-to('tablet') {
         padding: map.get(v.$spacing, 'md') map.get(v.$spacing, '2xl');
 
-        &__hamburger {
+        &__hamburger,
+        &__action-link--favorite {
             display: none;
         }
 
@@ -187,44 +140,6 @@
             flex-direction: row;
             align-items: center;
             gap: map.get(v.$spacing, 'lg');
-        }
-
-        .dropdown {
-            &__head {
-                @include m.font('body-reg');
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                min-width: f.to-rem(120px);
-                min-height: f.to-rem(45px);
-                padding: f.to-rem(10px) map.get(v.$spacing, 'sm');
-                color: map.get(v.$colors, 'text-primary');
-            }
-
-            &__content {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                min-width: f.to-rem(180px);
-                background-color: map.get(v.$colors, 'surface-base');
-                box-shadow: map.get(v.$shadows, 'md');
-                z-index: map.get(v.$z-layers, 'dropdown');
-            }
-
-            &:hover .dropdown__content,
-            &:focus-within .dropdown__content {
-                display: block;
-            }
-
-            &:hover .dropdown__head,
-            &:focus-within .dropdown__head {
-                @include gradient-surface-active;
-            }
-        }
-
-        &__action-link--favorite {
-            display: none;
         }
 
         &__actions {
@@ -249,26 +164,6 @@
         &__action-text {
             display: inline-block;
             font-size: map.get(v.$font-sizes, 'md');
-        }
-    }
-    &:has(.navbar__brand:hover),
-    &:has(.navbar__brand:focus-within),
-    &:has(.navbar__nav:hover),
-    &:has(.navbar__nav:focus-within) {
-        .navbar__nav {
-            display: block;
-        }
-
-        .navbar__hamburger {
-            @include gradient-surface-active;
-
-            .navbar__hamburger-icon {
-                @include gradient-surface-active;
-
-                &::before {
-                    color: map.get(v.$colors, 'text-inverse');
-                }
-            }
         }
     }
 }

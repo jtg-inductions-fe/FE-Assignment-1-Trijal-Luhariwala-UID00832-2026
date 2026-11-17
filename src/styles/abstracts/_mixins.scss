@@ -21,3 +21,16 @@
         @error "Font '#{$name}' not found in $fonts.";
     }
 }
+
+@mixin gradient-text {
+    background: map.get(v.$gradients, 'brand-primary');
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@mixin gradient-surface-active {
+    background: map.get(v.$gradients, 'brand-primary');
+    color: map.get(v.$colors, 'text-inverse');
+    -webkit-text-fill-color: map.get(v.$colors, 'text-inverse');
+}
