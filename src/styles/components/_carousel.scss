@@ -1,0 +1,107 @@
+@use 'sass:map';
+@use '../abstracts/variables' as v;
+@use '../abstracts/functions' as f;
+@use '../abstracts/mixins' as m;
+
+.carousel {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    background-color: transparent;
+
+    .swiper {
+        width: 100%;
+        padding: map.get(v.$spacing, 'sm') 0 map.get(v.$spacing, 'lg');
+
+        -webkit-mask-image: linear-gradient(
+            to right,
+            transparent 0%,
+            v.$palette-neutral-0 6%,
+            v.$palette-neutral-0 94%,
+            transparent 100%
+        );
+        mask-image: linear-gradient(
+            to right,
+            transparent 0%,
+            v.$palette-neutral-0 6%,
+            v.$palette-neutral-0 94%,
+            transparent 100%
+        );
+        @include m.respond-to('tablet') {
+            -webkit-mask-image: none;
+            mask-image: none;
+        }
+        &-slide {
+            width: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &-pagination {
+            z-index: 500;
+            position: static;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            left: 0;
+            margin: map.get(v.$spacing, 'md') f.to-rem(370px);
+            transform: none;
+
+            &-bullet {
+                margin: 0 map.get(v.$spacing, 'xs');
+            }
+
+            &-bullet-active {
+                background: map.get(v.$colors, 'brand-primary');
+            }
+        }
+        &-button-prev,
+        &-button-next {
+            display: none;
+
+            @include m.respond-to('tablet') {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                top: 10%;
+                transform: translateY(-50%);
+                min-width: f.to-rem(48px);
+                min-height: f.to-rem(48px);
+                padding: map.get(v.$spacing, '0');
+                border-radius: map.get(v.$radi, 'pill');
+                background: map.get(v.$gradients, 'brand-primary');
+                color: map.get(v.$colors, 'text-inverse');
+                box-shadow: map.get(v.$shadows, 'md');
+
+                svg {
+                    width: 100%;
+                    height: 100%;
+                    max-width: f.to-rem(24px);
+                    max-height: f.to-rem(24px);
+                }
+            }
+        }
+    }
+
+    &__slide-img {
+        display: block;
+        width: auto;
+        max-height: f.to-rem(250px);
+        box-shadow: f.to-rem(2px) f.to-rem(4px) f.to-rem(12px)
+            rgba(map.get(v.$colors, 'text-primary'), 0.25);
+    }
+
+    @include m.respond-to('tablet') {
+        max-width: f.to-rem(800px);
+        padding-inline: map.get(v.$spacing, 'lg');
+    }
+
+    @include m.respond-to('desktop') {
+        max-width: f.to-rem(750px);
+        padding-inline: map.get(v.$spacing, 'lg');
+    }
+}

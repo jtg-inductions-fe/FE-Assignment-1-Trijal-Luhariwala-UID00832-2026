@@ -50,4 +50,10 @@
             color: map.get(v.$colors, 'text-inverse');
         }
     }
+
+    &--accent {
+        color: map.get(v.$colors, 'text-inverse');
+        background-color: map.get(v.$colors, 'accent');
+        font-size: map.get(v.$font-sizes, 'base');
+    }
 }

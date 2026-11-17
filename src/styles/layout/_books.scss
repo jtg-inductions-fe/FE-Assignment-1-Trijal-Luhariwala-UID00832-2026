@@ -1,0 +1,55 @@
+@use 'sass:map';
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+@use '../abstracts/functions' as f;
+
+.books {
+    width: 100%;
+    background-color: map.get(v.$colors, 'surface-subtle');
+
+    &__header {
+        width: 100%;
+        padding: map.get(v.$spacing, 'md');
+        background-color: map.get(v.$colors, 'surface-base');
+        text-align: center;
+    }
+
+    &__title {
+        text-transform: uppercase;
+        padding: f.to-rem(0px);
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: f.to-rem(1440px);
+        margin-inline: auto;
+        padding: map.get(v.$spacing, 'md') map.get(v.$spacing, 'lg')
+            map.get(v.$spacing, 'xl');
+        gap: map.get(v.$spacing, 'lg');
+    }
+
+    @include m.respond-to('tablet') {
+        &__header {
+            padding: map.get(v.$spacing, 'xl');
+        }
+
+        &__content {
+            padding: map.get(v.$spacing, 'xl') map.get(v.$spacing, '2xl')
+                map.get(v.$spacing, '2xl');
+            gap: map.get(v.$spacing, 'xl');
+        }
+    }
+
+    @include m.respond-to('desktop') {
+        &__content {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: map.get(v.$spacing, '3xl') f.to-rem(40px);
+            gap: map.get(v.$spacing, '2xl');
+        }
+    }
+}
