@@ -29,14 +29,160 @@
         <link rel="stylesheet" href="src/styles/main.scss" />
     </head>
     <body>
-        <header class="header">
-            <nav class="nav" aria-label="Main navigation"></nav>
+        <header class="navbar">
+            <div class="navbar__brand">
+                <button
+                    type="button"
+                    class="navbar__hamburger"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false"
+                    aria-controls="primary-navigation"
+                >
+                    <i
+                        class="navbar__hamburger-icon icon icon-menu"
+                        aria-hidden="true"
+                    ></i>
+                </button>
+
+                <a
+                    href="#"
+                    class="navbar__logo-link"
+                    aria-label="AluraBooks Home"
+                >
+                    <img
+                        src="src/assets/images/logos/logo.png"
+                        alt=""
+                        class="navbar__logo-img"
+                    />
+                    <span class="navbar__logo-text">
+                        Alura<span class="navbar__logo-highlight">Books</span>
+                    </span>
+                </a>
+            </div>
+
+            <nav
+                id="primary-navigation"
+                class="navbar__nav"
+                aria-label="Main navigation"
+            >
+                <ul class="navbar__menu">
+                    <li class="navbar__menu-item dropdown">
+                        <button
+                            type="button"
+                            class="dropdown__head"
+                            aria-expanded="false"
+                            aria-controls="menu-categories"
+                        >
+                            Categories
+                        </button>
+                        <ul id="menu-categories" class="dropdown__content">
+                            <li class="dropdown__item">
+                                <a href="#" class="dropdown__link"
+                                    >Programming</a
+                                >
+                            </li>
+                            <li class="dropdown__item">
+                                <a href="#" class="dropdown__link">Front-end</a>
+                            </li>
+                            <li class="dropdown__item">
+                                <a href="#" class="dropdown__link"
+                                    >Infrastructure</a
+                                >
+                            </li>
+                            <li class="dropdown__item">
+                                <a href="#" class="dropdown__link">Business</a>
+                            </li>
+                            <li class="dropdown__item">
+                                <a href="#" class="dropdown__link"
+                                    >Design &amp; UX</a
+                                >
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="navbar__menu-item dropdown">
+                        <button
+                            type="button"
+                            class="dropdown__head"
+                            aria-expanded="false"
+                            aria-controls="menu-favorites"
+                        >
+                            Favorites
+                        </button>
+                        <ul id="menu-favorites" class="dropdown__content">
+                            <li class="dropdown__item">
+                                <a href="#" class="dropdown__link">Option A</a>
+                            </li>
+                            <li class="dropdown__item">
+                                <a href="#" class="dropdown__link">Option B</a>
+                            </li>
+                            <li class="dropdown__item">
+                                <a href="#" class="dropdown__link">Option C</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="navbar__menu-item dropdown">
+                        <button
+                            type="button"
+                            class="dropdown__head"
+                            aria-expanded="false"
+                            aria-controls="menu-bookshelf"
+                        >
+                            My Bookshelf
+                        </button>
+                        <ul id="menu-bookshelf" class="dropdown__content">
+                            <li class="dropdown__item">
+                                <a href="#" class="dropdown__link">Option A</a>
+                            </li>
+                            <li class="dropdown__item">
+                                <a href="#" class="dropdown__link">Option B</a>
+                            </li>
+                            <li class="dropdown__item">
+                                <a href="#" class="dropdown__link">Option C</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="navbar__actions">
+                <a
+                    href="#"
+                    class="navbar__action-link navbar__action-link--favorite"
+                    aria-label="Favorites"
+                >
+                    <i
+                        class="navbar__action-icon icon icon-favourite"
+                        aria-hidden="true"
+                    ></i>
+                </a>
+
+                <a
+                    href="#"
+                    class="navbar__action-link navbar__action-link--bag"
+                    aria-label="My Bag"
+                >
+                    <i
+                        class="navbar__action-icon icon icon-bag"
+                        aria-hidden="true"
+                    ></i>
+                    <span class="navbar__action-text">My Bag</span>
+                </a>
+
+                <a
+                    href="#"
+                    class="navbar__action-link navbar__action-link--profile"
+                    aria-label="My Profile"
+                >
+                    <i
+                        class="navbar__action-icon icon icon-profile"
+                        aria-hidden="true"
+                    ></i>
+                    <span class="navbar__action-text">My Profile</span>
+                </a>
+            </div>
         </header>
-
-        <main class="main"></main>
-
-        <footer class="footer"></footer>
-
         <script type="module" src="./src/script/index.js"></script>
     </body>
 </html>
