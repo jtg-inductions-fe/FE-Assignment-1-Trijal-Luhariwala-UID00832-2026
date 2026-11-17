@@ -1,15 +1,12 @@
 @font-face {
-    font-family: 'Untitled';
-    src: url('/fonts/Untitled.woff') format('woff');
-    font-weight: normal;
+    font-family: 'AppIcons';
     font-style: normal;
+    font-weight: normal;
     font-display: block;
+    src: url('../../assets/fonts/app-icons.woff') format('woff');
 }
-
 .icon {
-    font-family: 'Untitled';
-    font-style: normal;
-    font-weight: normal;
+    font-family: 'AppIcons';
     font-variant: normal;
     text-transform: none;
     line-height: 1;

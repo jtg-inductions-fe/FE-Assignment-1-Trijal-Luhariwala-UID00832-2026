@@ -94,9 +94,16 @@ $spacing: (
 $radi: (
     'none': 0,
     'sm': f.to-rem(4px),
-    'md': f.to-rem(8px),
-    'lg': f.to-rem(16px),
+    'md': f.to-rem(6px),
+    'lg': f.to-rem(8px),
+    'xl': f.to-rem(16px),
     'pill': 9999px,
+);
+
+$transitions: (
+    'fast': 0.1s ease,
+    'base': 0.2s ease,
+    'slow': 0.3s ease,
 );
 
 $shadows: (
