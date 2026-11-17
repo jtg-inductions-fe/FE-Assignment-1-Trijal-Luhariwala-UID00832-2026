@@ -1,135 +1,164 @@
 export function initNavigation() {
     const navbar = document.querySelector('.navbar');
-    const hamburger = navbar?.querySelector('.navbar__hamburger');
-    const nav = document.getElementById('primary-navigation');
-    if (!navbar || !hamburger || !nav) return;
+    if (!navbar) return;
 
-    const dropdowns = [...navbar.querySelectorAll('.dropdown')];
-    const navLinks = [...nav.querySelectorAll('.dropdown__link')];
+    const hamburger = navbar.querySelector('.navbar__hamburger');
+    const nav = document.getElementById('primary-navigation');
+
+    const dropdowns = navbar.querySelectorAll('.dropdown');
+    const navLinks = nav.querySelectorAll('.dropdown__link');
     const afterNavTarget =
         navbar.querySelector('.navbar__logo-link') ||
         navbar.querySelector('.navbar__action-link');
-    const tabletQuery = window.matchMedia('(min-width: 1024px)');
 
-    const isMobileNavOpen = () => nav.classList.contains('is-open');
+    const desktopQuery = window.matchMedia('(min-width: 1024px)');
 
-    function setMobileMenu(isOpen) {
-        nav.classList.toggle('is-open', isOpen);
-        hamburger.classList.toggle('is-open', isOpen);
-        hamburger.setAttribute('aria-expanded', String(isOpen));
-        hamburger.setAttribute(
-            'aria-label',
-            isOpen ? 'Close navigation menu' : 'Open navigation menu',
-        );
+    function isMobileMenuOpen() {
+        return nav.classList.contains('is-open');
     }
 
-    function closeDropdowns(focusTrigger = false) {
-        dropdowns.forEach((dropdown) => {
-            if (!dropdown.classList.contains('is-open')) return;
-            dropdown.classList.remove('is-open');
-            const trigger = dropdown.querySelector('.dropdown__head');
-            trigger?.setAttribute('aria-expanded', 'false');
-            if (focusTrigger) trigger?.focus();
-        });
+    function setMobileMenu(shouldOpen) {
+        if (shouldOpen) {
+            nav.classList.add('is-open');
+            hamburger.classList.add('is-open');
+            hamburger.setAttribute('aria-expanded', 'true');
+            hamburger.setAttribute('aria-label', 'Close navigation menu');
+        } else {
+            nav.classList.remove('is-open');
+            hamburger.classList.remove('is-open');
+            hamburger.setAttribute('aria-expanded', 'false');
+            hamburger.setAttribute('aria-label', 'Open navigation menu');
+        }
     }
 
-    function syncResponsiveState({ matches: isDesktop }) {
-        dropdowns.forEach((dropdown) => {
-            const trigger = dropdown.querySelector('.dropdown__head');
-            if (!trigger) return;
-            trigger.tabIndex = isDesktop ? 0 : -1;
-            if (isDesktop) {
-                trigger.setAttribute(
-                    'aria-expanded',
-                    String(dropdown.classList.contains('is-open')),
-                );
-            } else {
-                trigger.removeAttribute('aria-expanded');
+    function closeAllDropdowns(shouldFocusTrigger) {
+        for (let i = 0; i < dropdowns.length; i++) {
+            const dropdown = dropdowns[i];
+            if (dropdown.classList.contains('is-open')) {
+                dropdown.classList.remove('is-open');
+                const trigger = dropdown.querySelector('.dropdown__head');
+                if (trigger) {
+                    trigger.setAttribute('aria-expanded', 'false');
+                    if (shouldFocusTrigger) {
+                        trigger.focus();
+                    }
+                }
             }
-        });
-
-        isDesktop ? setMobileMenu(false) : closeDropdowns();
+        }
     }
 
-    navbar.addEventListener('click', (event) => {
-        if (event.target.closest('.navbar__hamburger')) {
-            setMobileMenu(!isMobileNavOpen());
+    function updateForScreenSize() {
+        const isDesktop = desktopQuery.matches;
+
+        for (let i = 0; i < dropdowns.length; i++) {
+            const dropdown = dropdowns[i];
+            const trigger = dropdown.querySelector('.dropdown__head');
+
+            if (trigger) {
+                if (isDesktop) {
+                    trigger.tabIndex = 0;
+                    const isOpen = dropdown.classList.contains('is-open');
+                    trigger.setAttribute('aria-expanded', String(isOpen));
+                } else {
+                    trigger.tabIndex = -1;
+                    trigger.removeAttribute('aria-expanded');
+                }
+            }
+        }
+
+        if (isDesktop) {
+            setMobileMenu(false);
+        } else {
+            closeAllDropdowns(false);
+        }
+    }
+
+    navbar.addEventListener('click', function (event) {
+        const clickedHamburger = event.target.closest('.navbar__hamburger');
+        if (clickedHamburger) {
+            const currentlyOpen = isMobileMenuOpen();
+            setMobileMenu(!currentlyOpen);
             return;
         }
 
-        const trigger = event.target.closest('.dropdown__head');
-        if (trigger && tabletQuery.matches) {
-            const dropdown = trigger.closest('.dropdown');
-            const willOpen = !dropdown.classList.contains('is-open');
-            closeDropdowns();
-            if (willOpen) {
+        const clickedTrigger = event.target.closest('.dropdown__head');
+        if (clickedTrigger && desktopQuery.matches) {
+            const dropdown = clickedTrigger.closest('.dropdown');
+            const isAlreadyOpen = dropdown.classList.contains('is-open');
+
+            closeAllDropdowns(false);
+
+            if (!isAlreadyOpen) {
                 dropdown.classList.add('is-open');
-                trigger.setAttribute('aria-expanded', 'true');
+                clickedTrigger.setAttribute('aria-expanded', 'true');
             }
         }
     });
 
-    document.addEventListener('keydown', (event) => {
+    document.addEventListener('keydown', function (event) {
         if (event.key === 'Escape') {
-            if (isMobileNavOpen()) {
+            if (isMobileMenuOpen()) {
                 setMobileMenu(false);
                 hamburger.focus();
             }
-            closeDropdowns(true);
+            closeAllDropdowns(true);
             return;
         }
 
-        if (event.key !== 'Tab' || tabletQuery.matches || !isMobileNavOpen()) {
-            return;
-        }
+        const isMobile = !desktopQuery.matches;
+        if (event.key === 'Tab' && isMobile && isMobileMenuOpen()) {
+            const firstLink = navLinks[0];
+            const lastLink = navLinks[navLinks.length - 1];
+            const activeElement = document.activeElement;
 
-        const firstLink = navLinks[0];
-        const lastLink = navLinks[navLinks.length - 1];
-
-        if (
-            !event.shiftKey &&
-            document.activeElement === hamburger &&
-            firstLink
-        ) {
-            event.preventDefault();
-            firstLink.focus();
-        } else if (event.shiftKey && document.activeElement === firstLink) {
-            event.preventDefault();
-            hamburger.focus();
-        } else if (!event.shiftKey && document.activeElement === lastLink) {
-            setMobileMenu(false);
-            if (afterNavTarget) {
+            if (!event.shiftKey && activeElement === hamburger && firstLink) {
                 event.preventDefault();
-                afterNavTarget.focus();
+                firstLink.focus();
+            } else if (event.shiftKey && activeElement === firstLink) {
+                event.preventDefault();
+                hamburger.focus();
+            } else if (!event.shiftKey && activeElement === lastLink) {
+                setMobileMenu(false);
+                if (afterNavTarget) {
+                    event.preventDefault();
+                    afterNavTarget.focus();
+                }
             }
         }
     });
 
-    document.addEventListener('click', (event) => {
-        if (!navbar.contains(event.target)) {
+    document.addEventListener('click', function (event) {
+        const clickedInsideNavbar = navbar.contains(event.target);
+        if (!clickedInsideNavbar) {
             setMobileMenu(false);
-            closeDropdowns();
+            closeAllDropdowns(false);
         }
     });
 
-    navbar.addEventListener('focusout', ({ relatedTarget: next }) => {
-        if (!next) return;
-        if (
-            isMobileNavOpen() &&
-            !nav.contains(next) &&
-            !hamburger.contains(next)
-        ) {
+    navbar.addEventListener('focusout', function (event) {
+        const nextFocusedElement = event.relatedTarget;
+        if (!nextFocusedElement) return;
+
+        const focusLeftMobileMenu =
+            !nav.contains(nextFocusedElement) &&
+            !hamburger.contains(nextFocusedElement);
+
+        if (isMobileMenuOpen() && focusLeftMobileMenu) {
             setMobileMenu(false);
         }
-        if (
-            dropdowns.some(
-                (d) => d.classList.contains('is-open') && !d.contains(next),
-            )
-        ) {
-            closeDropdowns();
+
+        for (let i = 0; i < dropdowns.length; i++) {
+            const dropdown = dropdowns[i];
+            const isOpen = dropdown.classList.contains('is-open');
+            const focusLeftDropdown = !dropdown.contains(nextFocusedElement);
+
+            if (isOpen && focusLeftDropdown) {
+                closeAllDropdowns(false);
+                break;
+            }
         }
     });
 
-    syncResponsiveState(tabletQuery);
-    tabletQuery.addEventListener('change', syncResponsiveState);
+    updateForScreenSize();
+    desktopQuery.addEventListener('change', updateForScreenSize);
 }
