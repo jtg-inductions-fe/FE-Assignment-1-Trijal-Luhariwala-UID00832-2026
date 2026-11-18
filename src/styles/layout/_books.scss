@@ -26,10 +26,9 @@
         flex-direction: column;
         align-items: center;
         width: 100%;
-        max-width: f.to-rem(1440px);
         margin-inline: auto;
-        padding: map.get(v.$spacing, 'xs') map.get(v.$spacing, 'xs');
-        gap: map.get(v.$spacing, 'lg');
+        padding: map.get(v.$spacing, 'sm') 0 map.get(v.$spacing, 'xl');
+        gap: map.get(v.$spacing, 'md');
     }
 
     @include m.respond-to('tablet') {
@@ -47,8 +46,8 @@
         &__content {
             flex-direction: row;
             align-items: center;
-            justify-content: space-between;
-            padding: map.get(v.$spacing, '3xl') f.to-rem(40px);
+            justify-content: center;
+            padding: map.get(v.$spacing, '3xl') f.to-rem(80px);
             gap: map.get(v.$spacing, '2xl');
         }
     }

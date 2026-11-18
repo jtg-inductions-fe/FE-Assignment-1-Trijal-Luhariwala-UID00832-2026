@@ -1,5 +1,10 @@
-import Swiper from 'swiper/bundle';
-import 'swiper/css/bundle';
+import Swiper from 'swiper';
+import { Navigation, Pagination, FreeMode } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/free-mode';
 
 export function initCarousels() {
     const carousels = document.querySelectorAll('.carousel');
@@ -9,12 +14,14 @@ export function initCarousels() {
         if (!swiperEl) return;
 
         new Swiper(swiperEl, {
+            modules: [Navigation, Pagination, FreeMode],
             loop: true,
             spaceBetween: 8,
             slidesPerView: 'auto',
             freeMode: {
                 enabled: true,
                 momentum: true,
+                sticky: true,
             },
             pagination: {
                 el: carousel.querySelector('.swiper-pagination'),
