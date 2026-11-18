@@ -29,8 +29,8 @@
         <link rel="stylesheet" href="src/styles/main.scss" />
     </head>
     <body>
-        <div class="container">
-            <header class="navbar container container__navbar">
+        <header class="navbar">
+            <div class="container navbar__inner">
                 <div class="navbar__brand">
                     <button
                         type="button"
@@ -201,40 +201,42 @@
                         <span class="navbar__action-text">My Profile</span>
                     </a>
                 </div>
-            </header>
-            <section
-                class="hero container container__hero"
-                aria-labelledby="hero-heading"
-            >
-                <h1 id="hero-heading" class="hero__title">
-                    Do you already know where to start?
-                </h1>
-                <p class="hero__body">
-                    Find what you need for your development on our bookshelf!
-                </p>
-                <form class="hero__search-box" id="searchBox" role="search">
-                    <button
-                        type="button"
-                        class="hero__search-btn"
-                        id="searchIcon"
-                        aria-label="Reset search"
-                    >
-                        <i
-                            class="hero__search-icon icon icon-search"
-                            aria-hidden="true"
-                        ></i>
-                    </button>
-                    <input
-                        type="text"
-                        class="hero__search-input"
-                        id="searchInput"
-                        placeholder="What will your next read be?"
-                        aria-label="What will your next read be?"
-                        autocomplete="off"
-                    />
-                </form>
+            </div>
+        </header>
+        <main>
+            <section class="hero" aria-labelledby="hero-heading">
+                <div class="container hero__inner">
+                    <h1 id="hero-heading" class="hero__title">
+                        Do you already know where to start?
+                    </h1>
+                    <p class="hero__body">
+                        Find what you need for your development on our
+                        bookshelf!
+                    </p>
+                    <form class="hero__search-box" id="searchBox" role="search">
+                        <button
+                            type="button"
+                            class="hero__search-btn"
+                            id="searchIcon"
+                            aria-label="Reset search"
+                        >
+                            <i
+                                class="hero__search-icon icon icon-search"
+                                aria-hidden="true"
+                            ></i>
+                        </button>
+                        <input
+                            type="text"
+                            class="hero__search-input"
+                            id="searchInput"
+                            placeholder="What will your next read be?"
+                            aria-label="What will your next read be?"
+                            autocomplete="off"
+                        />
+                    </form>
+                </div>
             </section>
-            <script type="module" src="./src/script/index.js"></script>
-        </div>
+        </main>
+        <script type="module" src="./src/script/index.js"></script>
     </body>
 </html>
