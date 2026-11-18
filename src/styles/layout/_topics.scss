@@ -34,8 +34,6 @@
     }
 
     &__btn {
-        @include m.font('body-bold');
-        padding: map.get(v.$spacing, 'md') map.get(v.$spacing, 'lg');
         border-radius: map.get(v.$radi, 'none');
         font-size: map.get(v.$font-sizes, 'sm');
         white-space: nowrap;
@@ -48,7 +46,7 @@
     @include m.respond-to('tablet') {
         &__inner {
             padding: map.get(v.$spacing, 'xl') map.get(v.$spacing, '2xl');
-            gap: map.get(v.$spacing, 'xl');
+            gap: map.get(v.$spacing, '2xl');
         }
 
         &__title {
