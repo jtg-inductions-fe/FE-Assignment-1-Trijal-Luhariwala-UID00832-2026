@@ -98,10 +98,12 @@
     @include m.respond-to('tablet') {
         max-width: f.to-rem(800px);
         padding-inline: map.get(v.$spacing, 'lg');
+        &__slide-img {
+            max-height: f.to-rem(265px);
+        }
     }
 
     @include m.respond-to('desktop') {
         max-width: f.to-rem(750px);
-        padding-inline: map.get(v.$spacing, 'lg');
     }
 }
