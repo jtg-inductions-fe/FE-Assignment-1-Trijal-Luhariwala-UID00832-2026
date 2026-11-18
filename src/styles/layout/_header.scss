@@ -5,13 +5,16 @@
 
 .navbar {
     @include m.font('body-reg');
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     position: relative;
-    min-height: f.to-rem(80px);
-    background-color: map.get(v.$colors, 'surface-base');
     z-index: map.get(v.$z-layers, 'sticky');
+    background-color: map.get(v.$colors, 'surface-base');
+
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: f.to-rem(80px);
+    }
 
     &__brand {
         display: flex;
@@ -116,8 +119,6 @@
     }
 
     @include m.respond-to('tablet') {
-        padding: map.get(v.$spacing, 'md') map.get(v.$spacing, '2xl');
-
         &__hamburger,
         &__action-link--favorite {
             display: none;
@@ -149,8 +150,6 @@
     }
 
     @include m.respond-to('desktop') {
-        padding: map.get(v.$spacing, 'md') f.to-rem(80px);
-
         &__nav {
             margin-right: auto;
             margin-left: map.get(v.$spacing, '2xl');
