@@ -8,16 +8,14 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    min-height: f.to-rem(215px);
-    background: map.get(v.$gradients, 'brand-primary');
 
     &__inner {
+        background: map.get(v.$gradients, 'brand-primary');
         gap: f.to-rem(10px);
         display: flex;
         align-items: center;
         flex-direction: column;
         justify-content: center;
-        width: 100%;
         min-height: f.to-rem(215px);
     }
 
@@ -80,7 +78,9 @@
     }
 
     @include m.respond-to('tablet') {
-        min-height: f.to-rem(330px);
+        &__inner {
+            min-height: f.to-rem(330px);
+        }
 
         &__body {
             max-width: f.to-rem(500px);
