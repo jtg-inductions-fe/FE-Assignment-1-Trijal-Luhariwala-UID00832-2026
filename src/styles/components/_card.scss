@@ -9,12 +9,14 @@
     justify-content: space-between;
     width: 100%;
     max-width: f.to-rem(380px);
+    min-height: f.to-rem(300px);
     padding: map.get(v.$spacing, 'md');
     gap: map.get(v.$spacing, 'md');
     border-radius: map.get(v.$radi, 'lg');
     background-color: map.get(v.$colors, 'surface-base');
     color: map.get(v.$colors, 'text-primary');
     box-shadow: map.get(v.$shadows, 'md');
+    margin-bottom: map.get(v.$spacing, 'md');
 
     &__body {
         display: flex;
@@ -100,6 +102,7 @@
     @include m.respond-to('tablet') {
         max-width: f.to-rem(590px);
         padding: map.get(v.$spacing, 'lg');
+        min-height: f.to-rem(275px);
 
         &__desc {
             font-size: map.get(v.$font-sizes, 'base');

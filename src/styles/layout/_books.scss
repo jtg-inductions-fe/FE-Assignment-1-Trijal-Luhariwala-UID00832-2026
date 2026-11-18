@@ -5,7 +5,9 @@
 
 .books {
     width: 100%;
-    background-color: map.get(v.$colors, 'surface-subtle');
+    &__inner {
+        background-color: map.get(v.$colors, 'surface-subtle');
+    }
 
     &__header {
         width: 100%;
@@ -26,8 +28,7 @@
         width: 100%;
         max-width: f.to-rem(1440px);
         margin-inline: auto;
-        padding: map.get(v.$spacing, 'md') map.get(v.$spacing, 'lg')
-            map.get(v.$spacing, 'xl');
+        padding: map.get(v.$spacing, 'xs') map.get(v.$spacing, 'xs');
         gap: map.get(v.$spacing, 'lg');
     }
 
@@ -37,8 +38,7 @@
         }
 
         &__content {
-            padding: map.get(v.$spacing, 'xl') map.get(v.$spacing, '2xl')
-                map.get(v.$spacing, '2xl');
+            padding: map.get(v.$spacing, '2xl') map.get(v.$spacing, '2xl');
             gap: map.get(v.$spacing, 'xl');
         }
     }
