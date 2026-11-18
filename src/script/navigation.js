@@ -11,8 +11,7 @@ export function initNavigation() {
         navbar.querySelector('.navbar__logo-link') ||
         navbar.querySelector('.navbar__action-link');
 
-    const desktopQuery = window.matchMedia('(min-width: 1024px)');
-
+    const tabletQuery = window.matchMedia('(min-width: 1024px)');
     function isMobileMenuOpen() {
         return nav.classList.contains('is-open');
     }
@@ -48,14 +47,14 @@ export function initNavigation() {
     }
 
     function updateForScreenSize() {
-        const isDesktop = desktopQuery.matches;
+        const isTablet = tabletQuery.matches;
 
         for (let i = 0; i < dropdowns.length; i++) {
             const dropdown = dropdowns[i];
             const trigger = dropdown.querySelector('.dropdown__head');
 
             if (trigger) {
-                if (isDesktop) {
+                if (isTablet) {
                     trigger.tabIndex = 0;
                     const isOpen = dropdown.classList.contains('is-open');
                     trigger.setAttribute('aria-expanded', String(isOpen));
@@ -66,7 +65,7 @@ export function initNavigation() {
             }
         }
 
-        if (isDesktop) {
+        if (isTablet) {
             setMobileMenu(false);
         } else {
             closeAllDropdowns(false);
@@ -82,7 +81,7 @@ export function initNavigation() {
         }
 
         const clickedTrigger = event.target.closest('.dropdown__head');
-        if (clickedTrigger && desktopQuery.matches) {
+        if (clickedTrigger && tabletQuery.matches) {
             const dropdown = clickedTrigger.closest('.dropdown');
             const isAlreadyOpen = dropdown.classList.contains('is-open');
 
@@ -105,7 +104,7 @@ export function initNavigation() {
             return;
         }
 
-        const isMobile = !desktopQuery.matches;
+        const isMobile = !tabletQuery.matches;
         if (event.key === 'Tab' && isMobile && isMobileMenuOpen()) {
             const firstLink = navLinks[0];
             const lastLink = navLinks[navLinks.length - 1];
@@ -160,5 +159,5 @@ export function initNavigation() {
     });
 
     updateForScreenSize();
-    desktopQuery.addEventListener('change', updateForScreenSize);
+    tabletQuery.addEventListener('change', updateForScreenSize);
 }

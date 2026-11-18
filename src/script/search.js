@@ -5,17 +5,8 @@ export function initSearch() {
 
     function resetSearch() {
         searchInput.value = '';
-        searchBox.classList.remove('has-text');
         searchInput.focus();
     }
-
-    searchInput.addEventListener('input', () => {
-        if (searchInput.value.trim().length > 0) {
-            searchBox.classList.add('has-text');
-        } else {
-            searchBox.classList.remove('has-text');
-        }
-    });
 
     searchIcon.addEventListener('click', () => {
         if (searchInput.value.trim().length > 0) {

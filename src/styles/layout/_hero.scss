@@ -31,11 +31,10 @@
         border: f.to-rem(1px) solid map.get(v.$colors, 'text-inverse');
         border-radius: map.get(v.$radi, 'pill');
 
-        &.has-text .hero__search-btn {
+        &:has(.hero__search-input:not(:placeholder-shown)) .hero__search-btn {
             margin-left: 0;
         }
     }
-
     &__search-btn {
         display: flex;
         align-items: center;

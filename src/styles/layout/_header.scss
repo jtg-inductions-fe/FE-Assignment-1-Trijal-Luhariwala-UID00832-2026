@@ -116,8 +116,6 @@
     }
 
     @include m.respond-to('tablet') {
-        padding: map.get(v.$spacing, 'md') map.get(v.$spacing, '2xl');
-
         &__hamburger,
         &__action-link--favorite {
             display: none;
@@ -149,8 +147,6 @@
     }
 
     @include m.respond-to('desktop') {
-        padding: map.get(v.$spacing, 'md') f.to-rem(80px);
-
         &__nav {
             margin-right: auto;
             margin-left: map.get(v.$spacing, '2xl');
