@@ -1,0 +1,108 @@
+@use 'sass:map';
+@use '../abstracts/variables' as v;
+@use '../abstracts/functions' as f;
+@use '../abstracts/mixins' as m;
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    max-width: f.to-rem(380px);
+    padding: map.get(v.$spacing, 'md');
+    gap: map.get(v.$spacing, 'md');
+    border-radius: map.get(v.$radi, 'lg');
+    background-color: map.get(v.$colors, 'surface-base');
+    color: map.get(v.$colors, 'text-primary');
+    box-shadow: map.get(v.$shadows, 'md');
+
+    &__body {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: map.get(v.$spacing, 'md');
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        gap: map.get(v.$spacing, 'sm');
+    }
+
+    &__rating {
+        display: flex;
+        align-items: center;
+        gap: map.get(v.$spacing, 'xs');
+        color: map.get(v.$colors, 'accent');
+        font-size: map.get(v.$font-sizes, 'sm');
+    }
+
+    &__desc {
+        color: map.get(v.$colors, 'text-primary');
+        font-size: map.get(v.$font-sizes, 'sm');
+        line-height: 1.5;
+    }
+
+    &__media {
+        flex-shrink: 0;
+        width: 100%;
+        max-width: f.to-rem(165px);
+    }
+
+    &__img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: map.get(v.$spacing, 'md');
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: map.get(v.$spacing, 'md');
+    }
+
+    &__action-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: map.get(v.$spacing, 'xs');
+        color: map.get(v.$colors, 'brand-primary');
+        cursor: pointer;
+        transition: opacity map.get(v.$transitions, 'base');
+
+        &:hover,
+        &:focus-visible {
+            opacity: 0.75;
+        }
+    }
+
+    &__action-icon {
+        font-size: map.get(v.$font-sizes, 'lg');
+        line-height: 1;
+    }
+
+    &__learn {
+        width: 100%;
+        max-width: f.to-rem(165px);
+        padding: f.to-rem(12px) map.get(v.$spacing, 'md');
+        border-radius: map.get(v.$radi, 'none');
+        text-align: center;
+    }
+
+    @include m.respond-to('tablet') {
+        max-width: f.to-rem(590px);
+        padding: map.get(v.$spacing, 'lg');
+
+        &__desc {
+            font-size: map.get(v.$font-sizes, 'base');
+        }
+    }
+}
