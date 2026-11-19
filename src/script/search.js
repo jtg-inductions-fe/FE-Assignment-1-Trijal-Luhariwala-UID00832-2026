@@ -1,21 +1,25 @@
-export function initSearch() {
-    const searchBox = document.getElementById('searchBox');
-    const searchInput = document.getElementById('searchInput');
-    const searchIcon = document.getElementById('searchIcon');
+export function initFormReset(formId, inputId, clearId) {
+    const form = document.getElementById(formId);
+    const input = document.getElementById(inputId);
+    const clearBtn = document.getElementById(clearId);
 
-    function resetSearch() {
-        searchInput.value = '';
-        searchInput.focus();
+    if (!form || !input) return;
+
+    function resetField() {
+        input.value = '';
+        input.focus();
     }
 
-    searchIcon.addEventListener('click', () => {
-        if (searchInput.value.trim().length > 0) {
-            resetSearch();
-        }
-    });
+    if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+            if (input.value.trim().length > 0) {
+                resetField();
+            }
+        });
+    }
 
-    searchBox.addEventListener('submit', (event) => {
+    form.addEventListener('submit', (event) => {
         event.preventDefault();
-        resetSearch();
+        resetField();
     });
 }
