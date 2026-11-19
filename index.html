@@ -212,7 +212,7 @@
                     </p>
                     <form class="hero__search-box" id="searchBox" role="search">
                         <button
-                            type="button"
+                            type="submit"
                             class="hero__search-btn"
                             id="searchIcon"
                             aria-label="Reset search"
@@ -851,17 +851,16 @@
                         </p>
                     </div>
 
-                    <form
-                        id="newsletterForm"
-                        class="newsletter__form"
-                        novalidate
-                    >
+                    <form id="newsletterForm" class="newsletter__form">
+                        <label for="newsletterEmail" class="sr-only">
+                            Sign up with your email
+                        </label>
                         <div class="newsletter__input-box">
                             <button
-                                type="button"
+                                type="submit"
                                 class="newsletter__email-btn"
-                                id="EmailIcon"
-                                aria-label="Send Mail"
+                                id="emailIcon"
+                                aria-label="Subscribe to AluraBooks Newsletter"
                             >
                                 <i
                                     class="newsletter__icon icon icon-email"
@@ -870,6 +869,7 @@
                             </button>
                             <input
                                 id="newsletterEmail"
+                                name="email"
                                 type="email"
                                 class="newsletter__input"
                                 placeholder="Sign up with your email"

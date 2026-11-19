@@ -9,7 +9,6 @@
 
     &__inner {
         align-items: center;
-        @include m.gradient-text;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -18,6 +17,7 @@
     }
 
     &__info {
+        @include m.gradient-text;
         display: flex;
         flex-direction: column;
         gap: map.get(v.$spacing, 'sm');
@@ -59,7 +59,7 @@
     }
 
     &__icon {
-        color: map.get(v.$colors, 'brand-primary');
+        @include m.gradient-text;
         font-size: map.get(v.$font-sizes, 'base');
     }
 
@@ -68,6 +68,7 @@
         border: none;
         outline: none;
         background: transparent;
+        color: map.get(v.$colors, 'brand-primary');
         font-size: map.get(v.$font-sizes, 'base');
 
         &::placeholder {
@@ -87,12 +88,6 @@
 
         &__title {
             font-size: map.get(v.$font-sizes, 'lg');
-        }
-    }
-
-    @include m.respond-to('desktop') {
-        &__inner {
-            gap: map.get(v.$spacing, '2xl');
         }
     }
 }

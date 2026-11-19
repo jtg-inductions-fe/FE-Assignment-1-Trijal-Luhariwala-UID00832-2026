@@ -1,10 +1,10 @@
 import { initNavigation } from './navigation.js';
-import { initFormReset } from './search.js';
+import { initFormReset } from './form.js';
 import { initCarousels } from './carousel.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
-    initFormReset('searchBox', 'searchInput', 'searchIcon');
+    initFormReset('searchBox');
     initCarousels();
-    initFormReset('newsletterForm', 'newsletterEmail', 'EmailIcon');
+    initFormReset('newsletterForm');
 });
