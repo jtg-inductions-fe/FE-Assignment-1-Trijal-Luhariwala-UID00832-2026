@@ -23,7 +23,7 @@
     @include m.respond-to('tablet') {
         &__inner {
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             align-items: flex-start;
             padding: map.get(v.$spacing, '3xl') map.get(v.$spacing, 'xl');
             gap: map.get(v.$spacing, '2xl');
@@ -67,9 +67,8 @@
             gap: map.get(v.$spacing, 'sm');
             color: map.get(v.$colors, 'text-primary');
             font-size: map.get(v.$font-sizes, 'sm');
-
-            &:hover .footer__link-text,
-            &:focus-visible .footer__link-text {
+            &:hover,
+            &:focus-visible {
                 @include m.gradient-text;
             }
         }
