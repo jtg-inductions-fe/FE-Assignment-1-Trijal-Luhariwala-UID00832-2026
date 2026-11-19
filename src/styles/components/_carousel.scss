@@ -15,24 +15,6 @@
         width: 100%;
         padding: map.get(v.$spacing, 'sm') 0 map.get(v.$spacing, 'lg');
 
-        -webkit-mask-image: linear-gradient(
-            to right,
-            transparent 0%,
-            v.$palette-neutral-0 6%,
-            v.$palette-neutral-0 94%,
-            transparent 100%
-        );
-        mask-image: linear-gradient(
-            to right,
-            transparent 0%,
-            v.$palette-neutral-0 6%,
-            v.$palette-neutral-0 94%,
-            transparent 100%
-        );
-        @include m.respond-to('tablet') {
-            -webkit-mask-image: none;
-            mask-image: none;
-        }
         &-slide {
             width: auto;
             display: flex;
@@ -41,15 +23,29 @@
         }
 
         &-pagination {
-            align-self: center;
             position: static;
             margin: 0 auto map.get(v.$spacing, 'md');
-            transform: none;
+            transform: none !important;
 
-            &-bullet-active {
-                background: map.get(v.$colors, 'brand-primary');
+            &-bullet {
+                width: f.to-rem(10px);
+                height: f.to-rem(10px);
+
+                &-active {
+                    background: map.get(v.$colors, 'brand-primary');
+                }
+            }
+
+            @include m.respond-to('tablet') {
+                margin-bottom: map.get(v.$spacing, 'xl');
+
+                &-bullet {
+                    width: f.to-rem(12px);
+                    height: f.to-rem(12px);
+                }
             }
         }
+
         &-button-prev,
         &-button-next {
             display: none;
@@ -65,10 +61,12 @@
                 background: map.get(v.$gradients, 'brand-primary');
                 color: map.get(v.$colors, 'text-inverse');
                 box-shadow: map.get(v.$shadows, 'md');
-
+                &:focus-within {
+                    transform: scale(1.1);
+                }
                 svg {
-                    max-width: f.to-rem(24px);
-                    max-height: f.to-rem(24px);
+                    max-width: f.to-rem(12px);
+                    max-height: f.to-rem(12px);
                 }
             }
         }

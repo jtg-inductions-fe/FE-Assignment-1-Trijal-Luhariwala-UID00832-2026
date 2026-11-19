@@ -1,5 +1,5 @@
 import Swiper from 'swiper';
-import { Navigation, Pagination, FreeMode } from 'swiper/modules';
+import { Navigation, Pagination, FreeMode, A11y } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -14,20 +14,19 @@ export function initCarousels() {
         if (!swiperEl) return;
 
         new Swiper(swiperEl, {
-            modules: [Navigation, Pagination, FreeMode],
+            modules: [Navigation, Pagination, FreeMode, A11y],
             loop: true,
-            spaceBetween: 8,
+            spaceBetween: 15,
             slidesPerView: 'auto',
             freeMode: {
                 enabled: true,
                 momentum: true,
-                sticky: true,
             },
             pagination: {
                 el: carousel.querySelector('.swiper-pagination'),
                 clickable: true,
                 dynamicBullets: true,
-                dynamicMainBullets: 3,
+                dynamicMainBullets: 2,
             },
             navigation: {
                 nextEl: carousel.querySelector('.swiper-button-next'),
@@ -37,8 +36,6 @@ export function initCarousels() {
                 1024: {
                     slidesPerView: 3,
                     slidesPerGroup: 3,
-                    centeredSlides: false,
-                    spaceBetween: 20,
                 },
             },
         });

@@ -23,10 +23,10 @@
     @include m.respond-to('tablet') {
         &__inner {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: flex-start;
-            padding: map.get(v.$spacing, '3xl') map.get(v.$spacing, 'xl');
-            gap: map.get(v.$spacing, '2xl');
+            padding: map.get(v.$spacing, '2xl') map.get(v.$spacing, 'xl');
+            gap: map.get(v.$spacing, 'md');
         }
 
         &__brand {
@@ -67,9 +67,8 @@
             gap: map.get(v.$spacing, 'sm');
             color: map.get(v.$colors, 'text-primary');
             font-size: map.get(v.$font-sizes, 'sm');
-            &:hover,
-            &:focus-visible {
-                @include m.gradient-text;
+            &:hover {
+                color: map.get(v.$colors, 'accent');
             }
         }
 
@@ -84,7 +83,7 @@
     @include m.respond-to('desktop') {
         &__inner {
             justify-content: space-around;
-            padding-inline: f.to-rem(160px);
+            padding-inline: f.to-rem(120px);
         }
 
         &__columns {
