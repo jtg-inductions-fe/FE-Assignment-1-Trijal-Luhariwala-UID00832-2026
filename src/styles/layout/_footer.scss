@@ -1,0 +1,99 @@
+@use 'sass:map';
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+@use '../abstracts/functions' as f;
+
+.footer {
+    &__inner {
+        background-color: map.get(v.$colors, 'surface-subtle');
+        border-top: f.to-rem(1px) solid map.get(v.$colors, 'text-muted');
+        padding: map.get(v.$spacing, 'md') map.get(v.$spacing, 'lg')
+            map.get(v.$spacing, 'lg');
+    }
+
+    &__brand {
+        color: map.get(v.$colors, 'text-primary');
+        font-size: map.get(v.$font-sizes, 'base');
+    }
+
+    &__columns {
+        display: none;
+    }
+
+    @include m.respond-to('tablet') {
+        &__inner {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            padding: map.get(v.$spacing, '3xl') map.get(v.$spacing, 'xl');
+            gap: map.get(v.$spacing, '2xl');
+        }
+
+        &__brand {
+            font-size: map.get(v.$font-sizes, 'lg');
+            flex-shrink: 0;
+        }
+
+        &__columns {
+            display: flex;
+            justify-content: space-between;
+            flex: 1;
+            max-width: f.to-rem(760px);
+            gap: map.get(v.$spacing, 'xl');
+        }
+
+        &__column {
+            display: flex;
+            flex-direction: column;
+            gap: map.get(v.$spacing, 'lg');
+        }
+
+        &__heading {
+            @include m.font('body-reg');
+            color: map.get(v.$colors, 'text-muted');
+            font-size: map.get(v.$font-sizes, 'sm');
+            text-transform: uppercase;
+        }
+
+        &__list {
+            display: flex;
+            flex-direction: column;
+            gap: map.get(v.$spacing, 'md');
+        }
+
+        &__link {
+            display: flex;
+            align-items: center;
+            gap: map.get(v.$spacing, 'sm');
+            color: map.get(v.$colors, 'text-primary');
+            font-size: map.get(v.$font-sizes, 'sm');
+            &:hover,
+            &:focus-visible {
+                @include m.gradient-text;
+            }
+        }
+
+        &__icon {
+            width: f.to-rem(35px);
+            height: f.to-rem(35px);
+            flex-shrink: 0;
+            object-fit: contain;
+        }
+    }
+
+    @include m.respond-to('desktop') {
+        &__inner {
+            justify-content: space-around;
+            padding-inline: f.to-rem(160px);
+        }
+
+        &__columns {
+            max-width: f.to-rem(960px);
+        }
+
+        &__column {
+            padding-left: map.get(v.$spacing, 'lg');
+            border-left: f.to-rem(1px) solid map.get(v.$colors, 'text-muted');
+        }
+    }
+}
