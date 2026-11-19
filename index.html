@@ -212,7 +212,7 @@
                     </p>
                     <form class="hero__search-box" id="searchBox" role="search">
                         <button
-                            type="button"
+                            type="submit"
                             class="hero__search-btn"
                             id="searchIcon"
                             aria-label="Reset search"
@@ -838,6 +838,44 @@
                             </button>
                         </li>
                     </ul>
+                </div>
+            </section>
+            <section class="newsletter" aria-labelledby="newsletter-heading">
+                <div class="container newsletter__inner">
+                    <div class="newsletter__info">
+                        <h2 id="newsletter-heading" class="newsletter__title">
+                            Stay up to date with the latest news!
+                        </h2>
+                        <p class="newsletter__desc">
+                            E-book updates, new books, promotions, and more.
+                        </p>
+                    </div>
+
+                    <form id="newsletterForm" class="newsletter__form">
+                        <label for="newsletterEmail" class="sr-only">
+                            Sign up with your email
+                        </label>
+                        <div class="newsletter__input-box">
+                            <button
+                                type="submit"
+                                class="newsletter__email-btn"
+                                id="emailIcon"
+                                aria-label="Subscribe to AluraBooks Newsletter"
+                            >
+                                <i
+                                    class="newsletter__icon icon icon-email"
+                                    aria-hidden="true"
+                                ></i>
+                            </button>
+                            <input
+                                id="newsletterEmail"
+                                name="email"
+                                type="email"
+                                class="newsletter__input"
+                                placeholder="Sign up with your email"
+                            />
+                        </div>
+                    </form>
                 </div>
             </section>
         </main>

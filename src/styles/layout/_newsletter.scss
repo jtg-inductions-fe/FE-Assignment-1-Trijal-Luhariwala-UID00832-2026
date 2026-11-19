@@ -1,0 +1,93 @@
+@use 'sass:map';
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+@use '../abstracts/functions' as f;
+
+.newsletter {
+    background-color: map.get(v.$colors, 'surface-base');
+    border-bottom: f.to-rem(1px) solid map.get(v.$colors, 'border-subtle');
+
+    &__inner {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: map.get(v.$spacing, 'xl') map.get(v.$spacing, 'lg');
+        gap: map.get(v.$spacing, 'lg');
+    }
+
+    &__info {
+        @include m.gradient-text;
+        display: flex;
+        flex-direction: column;
+        gap: map.get(v.$spacing, 'sm');
+        max-width: f.to-rem(380px);
+    }
+
+    &__title {
+        @include m.font('body-med');
+        font-size: map.get(v.$font-sizes, 'md');
+    }
+
+    &__desc {
+        @include m.font('body-light');
+        font-size: map.get(v.$font-sizes, 'base');
+    }
+
+    &__form {
+        width: 100%;
+        max-width: f.to-rem(380px);
+    }
+
+    &__input-box {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: f.to-rem(350px);
+        padding: f.to-rem(10px) map.get(v.$spacing, 'lg');
+        gap: f.to-rem(12px);
+        border: f.to-rem(1px) solid map.get(v.$colors, 'brand-primary');
+        border-radius: map.get(v.$radi, 'pill');
+        transition: border-color map.get(v.$transitions, 'base');
+
+        &:focus-within {
+            border-color: map.get(v.$colors, 'accent');
+            outline: f.to-rem(2px) solid
+                rgba(map.get(v.$colors, 'brand-primary'), 0.2);
+            outline-offset: f.to-rem(2px);
+        }
+    }
+
+    &__icon {
+        @include m.gradient-text;
+        font-size: map.get(v.$font-sizes, 'base');
+    }
+
+    &__input {
+        width: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
+        color: map.get(v.$colors, 'brand-primary');
+        font-size: map.get(v.$font-sizes, 'base');
+
+        &::placeholder {
+            color: map.get(v.$colors, 'brand-primary');
+            opacity: 0.9;
+        }
+    }
+
+    @include m.respond-to('tablet') {
+        &__inner {
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            padding: map.get(v.$spacing, '2xl');
+            gap: map.get(v.$spacing, '2xl');
+        }
+
+        &__title {
+            font-size: map.get(v.$font-sizes, 'lg');
+        }
+    }
+}
