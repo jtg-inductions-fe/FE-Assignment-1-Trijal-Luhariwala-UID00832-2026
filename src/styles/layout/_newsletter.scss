@@ -5,15 +5,14 @@
 
 .newsletter {
     background-color: map.get(v.$colors, 'surface-base');
-    border-bottom: f.to-rem(1px) solid map.get(v.$colors, 'border-subtle');
 
     &__inner {
         align-items: center;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        padding: map.get(v.$spacing, 'xl') map.get(v.$spacing, 'lg');
-        gap: map.get(v.$spacing, 'lg');
+        padding: map.get(v.$spacing, 'lg') map.get(v.$spacing, 'lg');
+        gap: map.get(v.$spacing, 'xs');
     }
 
     &__info {
@@ -37,13 +36,21 @@
     &__form {
         width: 100%;
         max-width: f.to-rem(380px);
+
+        @include m.respond-to('tablet') {
+            margin-bottom: f.to-rem(60px);
+            max-width: f.to-rem(330px);
+        }
+        @include m.respond-to('desktop') {
+            max-width: f.to-rem(350px);
+        }
     }
 
     &__input-box {
         display: flex;
         align-items: center;
         width: 100%;
-        max-width: f.to-rem(350px);
+
         padding: f.to-rem(10px) map.get(v.$spacing, 'lg');
         gap: f.to-rem(12px);
         border: f.to-rem(1px) solid map.get(v.$colors, 'brand-primary');
@@ -82,7 +89,7 @@
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            padding: map.get(v.$spacing, '2xl');
+            padding: f.to-rem(55px) 0 f.to-rem(25px);
             gap: map.get(v.$spacing, '2xl');
         }
 

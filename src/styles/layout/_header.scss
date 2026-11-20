@@ -8,7 +8,6 @@
     position: relative;
     z-index: map.get(v.$z-layers, 'sticky');
     background-color: map.get(v.$colors, 'surface-base');
-
     &__inner {
         display: flex;
         justify-content: space-between;
@@ -16,11 +15,7 @@
         min-height: f.to-rem(80px);
 
         @include m.respond-to('tablet') {
-            padding-inline: map.get(v.$spacing, '2xl');
-        }
-
-        @include m.respond-to('desktop') {
-            padding-inline: f.to-rem(80px);
+            padding: f.to-rem(18px) f.to-rem(80px);
         }
     }
 
@@ -73,6 +68,7 @@
         display: none;
         font-size: map.get(v.$font-sizes, '2xl');
         color: map.get(v.$colors, 'text-primary');
+        padding-top: f.to-rem(10px);
     }
 
     &__logo-highlight {
@@ -162,7 +158,11 @@
             margin-right: auto;
             margin-left: map.get(v.$spacing, '2xl');
         }
-
+        &__action-link {
+            &:hover {
+                color: map.get(v.$colors, 'accent');
+            }
+        }
         &__actions {
             max-width: f.to-rem(370px);
             margin-right: 0;

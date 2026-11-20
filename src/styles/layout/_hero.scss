@@ -17,6 +17,7 @@
         flex-direction: column;
         justify-content: center;
         min-height: f.to-rem(215px);
+        padding: map.get(v.$spacing, 'xs');
     }
 
     &__body {
@@ -32,6 +33,7 @@
         width: 100%;
         max-width: f.to-rem(380px);
         min-height: f.to-rem(45px);
+        margin-top: f.to-rem(10px);
         padding: f.to-rem(10px) map.get(v.$spacing, 'lg');
         border: f.to-rem(1px) solid map.get(v.$colors, 'text-inverse');
         border-radius: map.get(v.$radi, 'pill');

@@ -47,6 +47,9 @@
             min-height: f.to-rem(45px);
             padding: f.to-rem(10px) map.get(v.$spacing, 'sm');
             color: map.get(v.$colors, 'text-primary');
+            &:hover {
+                color: map.get(v.$colors, 'accent');
+            }
         }
 
         &__content {

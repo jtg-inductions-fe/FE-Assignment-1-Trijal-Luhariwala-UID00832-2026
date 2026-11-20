@@ -55,5 +55,15 @@
         color: map.get(v.$colors, 'text-inverse');
         background-color: map.get(v.$colors, 'accent');
         font-size: map.get(v.$font-sizes, 'base');
+        &:hover,
+        &:focus-within {
+            transform: scale(1.05);
+        }
+        @include m.respond-to('tablet') {
+            &:hover,
+            &:focus-within {
+                transform: scale(1.1);
+            }
+        }
     }
 }
