@@ -27,7 +27,7 @@
         align-items: center;
         width: 100%;
         margin-inline: auto;
-        padding: map.get(v.$spacing, 'sm') 0 map.get(v.$spacing, 'lg');
+        padding: map.get(v.$spacing, 'lg') 0;
         gap: map.get(v.$spacing, 'sm');
     }
 

@@ -13,7 +13,7 @@
 
     .swiper {
         width: 100%;
-        padding: map.get(v.$spacing, 'sm') 0 map.get(v.$spacing, 'lg');
+        padding: f.to-rem(15px);
 
         &-slide {
             width: auto;

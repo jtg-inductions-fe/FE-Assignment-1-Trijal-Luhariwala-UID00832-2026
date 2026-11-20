@@ -5,10 +5,14 @@
 
 .navbar {
     @include m.font('body-reg');
-    position: relative;
+    position: sticky;
+    top: 0;
+    width: 100%;
     z-index: map.get(v.$z-layers, 'sticky');
-    background-color: map.get(v.$colors, 'surface-base');
+
     &__inner {
+        box-shadow: map.get(v.$shadows, 'sm');
+        background-color: map.get(v.$colors, 'surface-base');
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -102,7 +106,7 @@
         justify-content: space-between;
         width: 100%;
         max-width: f.to-rem(170px);
-        padding-right: map.get(v.$spacing, 'sm');
+        // padding-right: map.get(v.$spacing, 'sm');
         margin-right: f.to-rem(22px);
     }
 
