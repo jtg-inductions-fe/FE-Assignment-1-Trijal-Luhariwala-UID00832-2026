@@ -1,0 +1,76 @@
+@use 'sass:map';
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+@use '../abstracts/functions' as f;
+
+.topics {
+    width: 100%;
+
+    &__inner {
+        padding: map.get(v.$spacing, 'lg');
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: map.get(v.$spacing, 'xl');
+        background: map.get(v.$gradients, 'brand-primary');
+        text-align: center;
+    }
+
+    &__title {
+        @include m.font('body-light');
+        color: map.get(v.$colors, 'text-inverse');
+        font-size: map.get(v.$font-sizes, 'base');
+        text-transform: uppercase;
+    }
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: f.to-rem(750px);
+        gap: f.to-rem(12px);
+    }
+
+    &__btn {
+        border-radius: map.get(v.$radi, 'none');
+        font-size: map.get(v.$font-sizes, 'sm');
+        white-space: nowrap;
+
+        &:focus-visible {
+            outline-color: map.get(v.$colors, 'text-inverse');
+        }
+    }
+
+    @include m.respond-to('tablet') {
+        &__inner {
+            padding: map.get(v.$spacing, 'xl') map.get(v.$spacing, '2xl');
+            gap: map.get(v.$spacing, 'xl');
+        }
+
+        &__title {
+            font-size: map.get(v.$font-sizes, 'lg');
+        }
+
+        &__list {
+            max-width: f.to-rem(760px);
+            gap: map.get(v.$spacing, 'lg');
+        }
+
+        &__btn {
+            padding: map.get(v.$spacing, 'lg') map.get(v.$spacing, 'xl');
+            font-size: map.get(v.$font-sizes, 'lg');
+        }
+    }
+
+    @include m.respond-to('desktop') {
+        &__inner {
+            padding: f.to-rem(70px) f.to-rem(80px);
+        }
+
+        &__title {
+            font-size: map.get(v.$font-sizes, '3xl');
+        }
+    }
+}

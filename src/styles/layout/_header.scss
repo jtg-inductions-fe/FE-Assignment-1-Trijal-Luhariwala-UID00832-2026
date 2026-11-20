@@ -1,0 +1,176 @@
+@use 'sass:map';
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+@use '../abstracts/functions' as f;
+
+.navbar {
+    @include m.font('body-reg');
+    position: relative;
+    z-index: map.get(v.$z-layers, 'sticky');
+    background-color: map.get(v.$colors, 'surface-base');
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: f.to-rem(80px);
+
+        @include m.respond-to('tablet') {
+            padding: f.to-rem(18px) f.to-rem(80px);
+        }
+    }
+
+    &__brand {
+        display: flex;
+        align-items: center;
+        gap: f.to-rem(12px);
+    }
+
+    &__hamburger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: f.to-rem(80px);
+        min-height: f.to-rem(80px);
+        padding: f.to-rem(28px) f.to-rem(22px);
+        cursor: pointer;
+
+        &:hover,
+        &:focus-visible,
+        &.is-open,
+        &[aria-expanded='true'] {
+            @include m.gradient-surface-active;
+
+            .navbar__hamburger-icon {
+                @include m.gradient-surface-active;
+
+                &::before {
+                    color: map.get(v.$colors, 'text-inverse');
+                }
+            }
+        }
+    }
+
+    &__hamburger-icon {
+        @include m.gradient-text;
+        display: inline-block;
+        font-size: map.get(v.$font-sizes, 'lg');
+        line-height: 1;
+    }
+
+    &__logo-link {
+        display: flex;
+        align-items: center;
+        gap: f.to-rem(12px);
+    }
+
+    &__logo-text {
+        @include m.font('title-bold');
+        display: none;
+        font-size: map.get(v.$font-sizes, '2xl');
+        color: map.get(v.$colors, 'text-primary');
+        padding-top: f.to-rem(10px);
+    }
+
+    &__logo-highlight {
+        @include m.font('title-reg');
+    }
+
+    &__nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        max-width: f.to-rem(300px);
+        background-color: map.get(v.$colors, 'surface-base');
+        box-shadow: map.get(v.$shadows, 'md');
+        z-index: map.get(v.$z-layers, 'dropdown');
+
+        &.is-open {
+            display: block;
+        }
+    }
+
+    &__menu {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: f.to-rem(170px);
+        padding-right: map.get(v.$spacing, 'sm');
+        margin-right: f.to-rem(22px);
+    }
+
+    &__action-link {
+        display: flex;
+        align-items: center;
+        column-gap: map.get(v.$spacing, 'sm');
+        color: map.get(v.$colors, 'text-primary');
+    }
+
+    &__action-icon {
+        font-size: map.get(v.$font-sizes, '3xl');
+        line-height: 1;
+    }
+
+    &__action-text {
+        display: none;
+    }
+
+    @include m.respond-to('tablet') {
+        &__hamburger,
+        &__action-link--favorite {
+            display: none;
+        }
+
+        &__logo-text {
+            display: block;
+        }
+
+        &__nav {
+            display: block;
+            position: static;
+            width: auto;
+            max-width: none;
+            box-shadow: none;
+            background-color: transparent;
+        }
+
+        &__menu {
+            flex-direction: row;
+            align-items: center;
+            gap: map.get(v.$spacing, 'lg');
+        }
+
+        &__actions {
+            max-width: f.to-rem(130px);
+            margin-right: 0;
+        }
+    }
+
+    @include m.respond-to('desktop') {
+        &__nav {
+            margin-right: auto;
+            margin-left: map.get(v.$spacing, '2xl');
+        }
+        &__action-link {
+            &:hover {
+                color: map.get(v.$colors, 'accent');
+            }
+        }
+        &__actions {
+            max-width: f.to-rem(370px);
+            margin-right: 0;
+        }
+
+        &__action-text {
+            display: inline-block;
+            font-size: map.get(v.$font-sizes, 'md');
+        }
+    }
+}

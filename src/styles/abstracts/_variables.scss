@@ -1,0 +1,123 @@
+@use './functions' as f;
+
+$palette-blue-500: #326589;
+$palette-blue-900: #002f52;
+$palette-orange: #eb9b00;
+
+$palette-neutral-0: #ffffff;
+$palette-neutral-100: #ebecee;
+$palette-neutral-500: #858585;
+$palette-neutral-1000: #000000;
+
+$colors: (
+    'brand-primary': $palette-blue-900,
+    'brand-secondary': $palette-blue-500,
+    'accent': $palette-orange,
+
+    'surface-base': $palette-neutral-0,
+    'surface-subtle': $palette-neutral-100,
+
+    'text-primary': $palette-neutral-1000,
+    'text-muted': $palette-neutral-500,
+    'text-inverse': $palette-neutral-0,
+
+    'border-subtle': $palette-neutral-100,
+);
+
+$gradients: (
+    'brand-primary':
+        linear-gradient(to right, $palette-blue-900, $palette-blue-500),
+);
+
+$font-primary: 'Poppins', sans-serif;
+$font-secondary: 'Josefin Sans', sans-serif;
+
+$weight-light: 300;
+$weight-regular: 400;
+$weight-medium: 500;
+$weight-bold: 700;
+
+$fonts: (
+    'body-light': (
+        $font-primary,
+        $weight-light,
+    ),
+    'body-reg': (
+        $font-primary,
+        $weight-regular,
+    ),
+    'body-med': (
+        $font-primary,
+        $weight-medium,
+    ),
+    'body-bold': (
+        $font-primary,
+        $weight-bold,
+    ),
+    'title-reg': (
+        $font-secondary,
+        $weight-regular,
+    ),
+    'title-bold': (
+        $font-secondary,
+        $weight-bold,
+    ),
+);
+
+$font-sizes: (
+    'sm': f.to-rem(14px),
+    'base': f.to-rem(16px),
+    'md': f.to-rem(18px),
+    'lg': f.to-rem(24px),
+    'xl': f.to-rem(26px),
+    '2xl': f.to-rem(30px),
+    '3xl': f.to-rem(32px),
+    '4xl': f.to-rem(36px),
+);
+
+$breakpoints: (
+    'tablet': 1024px,
+    'desktop': 1728px,
+);
+
+$spacing: (
+    '0': 0,
+    'xs': f.to-rem(4px),
+    'sm': f.to-rem(8px),
+    'md': f.to-rem(16px),
+    'lg': f.to-rem(24px),
+    'xl': f.to-rem(32px),
+    '2xl': f.to-rem(48px),
+    '3xl': f.to-rem(64px),
+);
+
+$radi: (
+    'none': 0,
+    'sm': f.to-rem(4px),
+    'md': f.to-rem(6px),
+    'lg': f.to-rem(8px),
+    'xl': f.to-rem(16px),
+    'pill': 9999px,
+);
+
+$transitions: (
+    'fast': 0.1s ease,
+    'base': 0.2s ease,
+    'slow': 0.3s ease,
+);
+
+$shadows: (
+    'none': none,
+    'sm': 0 2px 4px rgba($palette-blue-900, 0.08),
+    'md': 0 4px 12px rgba($palette-blue-900, 0.12),
+    'lg': 0 12px 24px rgba($palette-blue-900, 0.16),
+);
+
+$z-layers: (
+    'base': 1,
+    'dropdown': 100,
+    'sticky': 200,
+    'overlay': 300,
+    'modal': 400,
+    'toast': 500,
+);

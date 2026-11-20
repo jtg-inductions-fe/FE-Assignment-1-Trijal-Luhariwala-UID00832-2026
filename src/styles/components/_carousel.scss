@@ -1,0 +1,92 @@
+@use 'sass:map';
+@use '../abstracts/variables' as v;
+@use '../abstracts/functions' as f;
+@use '../abstracts/mixins' as m;
+
+.carousel {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: space-between;
+    max-width: 100%;
+    background-color: transparent;
+
+    .swiper {
+        width: 100%;
+        padding: map.get(v.$spacing, 'sm') 0 map.get(v.$spacing, 'lg');
+
+        &-slide {
+            width: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &-pagination {
+            position: static;
+            margin: 0 auto map.get(v.$spacing, 'md');
+            transform: none !important;
+
+            &-bullet {
+                width: f.to-rem(10px);
+                height: f.to-rem(10px);
+
+                &-active {
+                    background: map.get(v.$colors, 'brand-primary');
+                }
+            }
+
+            @include m.respond-to('tablet') {
+                margin-bottom: map.get(v.$spacing, 'xl');
+
+                &-bullet {
+                    width: f.to-rem(12px);
+                    height: f.to-rem(12px);
+                }
+            }
+        }
+
+        &-button-prev,
+        &-button-next {
+            display: none;
+
+            @include m.respond-to('tablet') {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-width: f.to-rem(48px);
+                min-height: f.to-rem(48px);
+                padding: map.get(v.$spacing, '0');
+                border-radius: map.get(v.$radi, 'pill');
+                background: map.get(v.$gradients, 'brand-primary');
+                color: map.get(v.$colors, 'text-inverse');
+                box-shadow: map.get(v.$shadows, 'md');
+                &:focus-within {
+                    transform: scale(1.1);
+                }
+                svg {
+                    max-width: f.to-rem(12px);
+                    max-height: f.to-rem(12px);
+                }
+            }
+        }
+    }
+
+    &__slide-img {
+        display: block;
+        width: auto;
+        max-height: f.to-rem(250px);
+        box-shadow: f.to-rem(2px) f.to-rem(4px) f.to-rem(12px)
+            rgba(map.get(v.$colors, 'text-primary'), 0.25);
+    }
+
+    @include m.respond-to('tablet') {
+        max-width: f.to-rem(800px);
+        padding-inline: map.get(v.$spacing, 'lg');
+
+        &__slide-img {
+            max-height: f.to-rem(265px);
+            max-width: f.to-rem(190px);
+        }
+    }
+}

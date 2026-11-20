@@ -1,0 +1,69 @@
+@use 'sass:map';
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+@use '../abstracts/functions' as f;
+
+.btn {
+    @include m.font('body-bold');
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: map.get(v.$spacing, 'sm');
+    padding: map.get(v.$spacing, 'md') map.get(v.$spacing, 'lg');
+    font-size: map.get(v.$font-sizes, 'base');
+    text-decoration: none;
+    cursor: pointer;
+
+    border: f.to-rem(1px) solid transparent;
+    border-radius: map.get(v.$radi, 'md');
+    transition:
+        background-color map.get(v.$transitions, 'base'),
+        border-color map.get(v.$transitions, 'base'),
+        color map.get(v.$transitions, 'base'),
+        transform map.get(v.$transitions, 'fast');
+
+    &:focus-visible {
+        outline: f.to-rem(2px) solid map.get(v.$colors, 'brand-primary');
+        outline-offset: f.to-rem(2px);
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+
+    &--primary {
+        background-color: map.get(v.$colors, 'accent');
+        color: map.get(v.$colors, 'text-inverse');
+
+        &:hover {
+            background-color: map.get(v.$colors, 'brand-primary');
+        }
+    }
+
+    &--outlined {
+        background-color: transparent;
+        border-color: map.get(v.$colors, 'brand-primary');
+        color: map.get(v.$colors, 'brand-primary');
+
+        &:hover {
+            background-color: map.get(v.$colors, 'brand-primary');
+            color: map.get(v.$colors, 'text-inverse');
+        }
+    }
+
+    &--accent {
+        color: map.get(v.$colors, 'text-inverse');
+        background-color: map.get(v.$colors, 'accent');
+        font-size: map.get(v.$font-sizes, 'base');
+        &:hover,
+        &:focus-within {
+            transform: scale(1.05);
+        }
+        @include m.respond-to('tablet') {
+            &:hover,
+            &:focus-within {
+                transform: scale(1.1);
+            }
+        }
+    }
+}

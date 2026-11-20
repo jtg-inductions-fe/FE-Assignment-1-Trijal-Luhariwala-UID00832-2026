@@ -1,0 +1,54 @@
+@use 'sass:map';
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+@use '../abstracts/functions' as f;
+
+.books {
+    width: 100%;
+    &__inner {
+        background-color: map.get(v.$colors, 'surface-subtle');
+    }
+
+    &__header {
+        width: 100%;
+        padding: map.get(v.$spacing, 'md');
+        background-color: map.get(v.$colors, 'surface-base');
+        text-align: center;
+    }
+
+    &__title {
+        text-transform: uppercase;
+        padding: f.to-rem(0px);
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-inline: auto;
+        padding: map.get(v.$spacing, 'sm') 0 map.get(v.$spacing, 'lg');
+        gap: map.get(v.$spacing, 'sm');
+    }
+
+    @include m.respond-to('tablet') {
+        &__content {
+            padding: f.to-rem(55px) f.to-rem(80px);
+            gap: map.get(v.$spacing, 'xl');
+        }
+
+        &__header {
+            padding: map.get(v.$spacing, 'xl');
+        }
+    }
+
+    @include m.respond-to('desktop') {
+        &__content {
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            padding: f.to-rem(80px);
+            gap: map.get(v.$spacing, '2xl');
+        }
+    }
+}

@@ -1,0 +1,76 @@
+@use 'sass:map';
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+@use '../abstracts/functions' as f;
+
+.dropdown {
+    position: relative;
+
+    &__head {
+        @include m.font('body-bold');
+        display: block;
+        width: 100%;
+        text-align: left;
+        text-transform: uppercase;
+        color: map.get(v.$colors, 'accent');
+        font-size: map.get(v.$font-sizes, 'base');
+        padding: map.get(v.$spacing, 'md') map.get(v.$spacing, 'lg')
+            map.get(v.$spacing, 'sm');
+        cursor: pointer;
+    }
+
+    &__content {
+        display: block;
+        width: 100%;
+    }
+
+    &__link {
+        @include m.gradient-text;
+        display: block;
+        padding: f.to-rem(12px) map.get(v.$spacing, 'lg');
+        font-size: map.get(v.$font-sizes, 'base');
+        text-transform: uppercase;
+
+        &:hover,
+        &:focus-visible {
+            @include m.gradient-surface-active;
+        }
+    }
+
+    @include m.respond-to('tablet') {
+        &__head {
+            @include m.font('body-reg');
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: f.to-rem(120px);
+            min-height: f.to-rem(45px);
+            padding: f.to-rem(10px) map.get(v.$spacing, 'sm');
+            color: map.get(v.$colors, 'text-primary');
+            &:hover {
+                color: map.get(v.$colors, 'accent');
+            }
+        }
+
+        &__content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: f.to-rem(180px);
+            background-color: map.get(v.$colors, 'surface-base');
+            box-shadow: map.get(v.$shadows, 'md');
+            z-index: map.get(v.$z-layers, 'dropdown');
+        }
+
+        &.is-open {
+            .dropdown__content {
+                display: block;
+            }
+
+            .dropdown__head {
+                @include m.gradient-surface-active;
+            }
+        }
+    }
+}

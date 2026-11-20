@@ -1,0 +1,106 @@
+@use 'sass:map';
+@use '../abstracts/variables' as v;
+@use '../abstracts/functions' as f;
+@use '../abstracts/mixins' as m;
+
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    &__inner {
+        background: map.get(v.$gradients, 'brand-primary');
+        gap: f.to-rem(10px);
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        min-height: f.to-rem(215px);
+        padding: map.get(v.$spacing, 'xs');
+    }
+
+    &__body {
+        max-width: f.to-rem(320px);
+        color: map.get(v.$colors, 'text-inverse');
+        text-align: center;
+    }
+
+    &__search-box {
+        @include m.font('body-reg');
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: f.to-rem(380px);
+        min-height: f.to-rem(45px);
+        margin-top: f.to-rem(10px);
+        padding: f.to-rem(10px) map.get(v.$spacing, 'lg');
+        border: f.to-rem(1px) solid map.get(v.$colors, 'text-inverse');
+        border-radius: map.get(v.$radi, 'pill');
+
+        &:has(.hero__search-input:not(:placeholder-shown)) .hero__search-btn {
+            margin-left: 0;
+        }
+    }
+    &__search-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-right: f.to-rem(12px);
+        margin-left: calc(50% - #{f.to-rem(120px)});
+        color: map.get(v.$colors, 'text-inverse');
+        cursor: pointer;
+        transition:
+            margin-left 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+            opacity 0.2s ease;
+
+        &:hover,
+        &:focus-visible {
+            opacity: 0.8;
+        }
+    }
+
+    &__search-icon {
+        font-size: map.get(v.$font-sizes, 'lg');
+        line-height: 1;
+    }
+
+    &__search-input {
+        width: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
+        color: map.get(v.$colors, 'text-inverse');
+        font-size: map.get(v.$font-sizes, 'sm');
+
+        &::placeholder {
+            color: rgba(map.get(v.$colors, 'text-inverse'), 0.8);
+        }
+    }
+
+    @include m.respond-to('tablet') {
+        &__inner {
+            min-height: f.to-rem(330px);
+        }
+
+        &__body {
+            max-width: f.to-rem(500px);
+        }
+
+        &__search-box {
+            max-width: f.to-rem(480px);
+            min-height: f.to-rem(60px);
+        }
+
+        &__search-input {
+            font-size: map.get(v.$font-sizes, 'base');
+        }
+    }
+
+    @include m.respond-to('desktop') {
+        &__search-box {
+            max-width: f.to-rem(590px);
+        }
+    }
+}
