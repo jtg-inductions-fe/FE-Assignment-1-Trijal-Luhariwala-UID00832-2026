@@ -33,7 +33,7 @@
 
     @include m.respond-to('tablet') {
         &__content {
-            padding: f.to-rem(80px) f.to-rem(80px);
+            padding: f.to-rem(55px) f.to-rem(80px);
             gap: map.get(v.$spacing, 'xl');
         }
 
@@ -47,7 +47,7 @@
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            padding: f.to-rem(100px) f.to-rem(80px);
+            padding: f.to-rem(80px);
             gap: map.get(v.$spacing, '2xl');
         }
     }

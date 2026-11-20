@@ -38,10 +38,11 @@
         max-width: f.to-rem(380px);
 
         @include m.respond-to('tablet') {
-            margin-bottom: f.to-rem(60px);
+            margin-bottom: f.to-rem(30px);
             max-width: f.to-rem(330px);
         }
         @include m.respond-to('desktop') {
+            margin-bottom: f.to-rem(60px);
             max-width: f.to-rem(350px);
         }
     }
@@ -89,12 +90,18 @@
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            padding: f.to-rem(55px) 0 f.to-rem(25px);
-            gap: map.get(v.$spacing, '2xl');
+            padding: f.to-rem(30px) 0 f.to-rem(50px);
+            gap: f.to-rem(20px);
         }
 
         &__title {
             font-size: map.get(v.$font-sizes, 'lg');
+        }
+    }
+    @include m.respond-to('desktop') {
+        &__inner {
+            padding: f.to-rem(60px) 0 f.to-rem(25px);
+            gap: map.get(v.$spacing, '2xl');
         }
     }
 }
