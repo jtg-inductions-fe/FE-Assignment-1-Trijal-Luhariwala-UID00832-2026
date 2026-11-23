@@ -42,7 +42,6 @@
             max-width: f.to-rem(330px);
         }
         @include m.respond-to('desktop') {
-            margin-bottom: f.to-rem(60px);
             max-width: f.to-rem(350px);
         }
     }
@@ -60,8 +59,6 @@
 
         &:focus-within {
             border-color: map.get(v.$colors, 'accent');
-            outline: f.to-rem(2px) solid
-                rgba(map.get(v.$colors, 'brand-primary'), 0.2);
             outline-offset: f.to-rem(2px);
         }
     }
@@ -90,17 +87,20 @@
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            padding: f.to-rem(30px) 0 f.to-rem(50px);
+            padding: f.to-rem(40px) 0;
             gap: f.to-rem(20px);
         }
 
         &__title {
             font-size: map.get(v.$font-sizes, 'lg');
         }
+        &__input-box {
+            align-self: center;
+        }
     }
     @include m.respond-to('desktop') {
         &__inner {
-            padding: f.to-rem(60px) 0 f.to-rem(25px);
+            padding: f.to-rem(45px);
             gap: map.get(v.$spacing, '2xl');
         }
     }

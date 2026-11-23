@@ -13,7 +13,7 @@
 
     .swiper {
         width: 100%;
-        padding: map.get(v.$spacing, 'sm') 0 map.get(v.$spacing, 'lg');
+        padding: f.to-rem(15px);
 
         &-slide {
             width: auto;
@@ -25,11 +25,16 @@
         &-pagination {
             position: static;
             margin: 0 auto map.get(v.$spacing, 'md');
-            transform: none !important;
+            transform: none;
 
             &-bullet {
                 width: f.to-rem(10px);
                 height: f.to-rem(10px);
+
+                &:hover {
+                    transform: scale(1.1);
+                    outline: 1px map.get(v.$colors, 'accent');
+                }
 
                 &-active {
                     background: map.get(v.$colors, 'brand-primary');
@@ -61,6 +66,7 @@
                 background: map.get(v.$gradients, 'brand-primary');
                 color: map.get(v.$colors, 'text-inverse');
                 box-shadow: map.get(v.$shadows, 'md');
+                &:hover,
                 &:focus-within {
                     transform: scale(1.1);
                 }

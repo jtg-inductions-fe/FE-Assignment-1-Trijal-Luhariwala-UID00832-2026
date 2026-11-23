@@ -7,8 +7,7 @@
     &__inner {
         border-top: f.to-rem(1px) solid map.get(v.$colors, 'text-muted');
         background-color: map.get(v.$colors, 'surface-subtle');
-        padding: map.get(v.$spacing, 'md') map.get(v.$spacing, 'lg')
-            map.get(v.$spacing, 'lg');
+        padding: f.to-rem(20px) map.get(v.$spacing, 'lg');
     }
 
     &__brand {
@@ -24,7 +23,7 @@
         &__inner {
             display: flex;
             justify-content: center;
-            padding: f.to-rem(56px) f.to-rem(5px);
+            padding: f.to-rem(56px) f.to-rem(10px);
             gap: f.to-rem(20px);
         }
 
@@ -35,8 +34,7 @@
 
         &__columns {
             display: flex;
-            justify-content: flex-start;
-            padding-left: f.to-rem(70px);
+            justify-content: flex-end;
             flex: 1;
             max-width: f.to-rem(780px);
             gap: f.to-rem(80px);
@@ -85,19 +83,18 @@
     @include m.respond-to('desktop') {
         &__inner {
             justify-content: center;
-            padding: f.to-rem(56px) f.to-rem(200px) f.to-rem(64px);
+            padding: f.to-rem(50px) f.to-rem(200px);
             gap: f.to-rem(120px);
         }
 
         &__columns {
             justify-content: flex-start;
-            gap: f.to-rem(190px);
+            gap: f.to-rem(200px);
             max-width: f.to-rem(1080px);
         }
 
         &__column {
-            padding-left: map.get(v.$spacing, 'xl');
-            padding-bottom: map.get(v.$spacing, 'md');
+            padding: map.get(v.$spacing, 'md') f.to-rem(25px);
             border-left: f.to-rem(1px) solid map.get(v.$colors, 'text-muted');
         }
     }
